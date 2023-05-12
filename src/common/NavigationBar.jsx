@@ -1,18 +1,20 @@
 import { useState } from "react";
-import "../css/Nav.css";
 import logo from "../utils/logo.png";
+import "../css/Nav.css";
+
 function NavigationBar() {
-  let [logged, setLogged] = useState(false);
+  const [logged, setLogged] = useState(true);
+
   return (
     <nav
-      class="navbar navbar-expand-lg navbar-light fixed-top navbar-dark"
+      className="navbar navbar-expand-lg navbar-light sticky-top navbar-dark"
       id="nav"
     >
-      <a class="navbar-brand" href="#">
+      <a className="navbar-brand" href="#">
         <img src={logo} alt="" width="60px" />
       </a>
       <button
-        class="navbar-toggler"
+        className="navbar-toggler"
         type="button"
         data-toggle="collapse"
         data-target="#navbarNav"
@@ -20,53 +22,55 @@ function NavigationBar() {
         aria-expanded="false"
         aria-label="Toggle navigation"
       >
-        <span class="navbar-toggler-icon"></span>
+        <span className="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link text-white nav-link-hover" href="#">
+      <div className="collapse navbar-collapse" id="navbarNav">
+        <ul className="navbar-nav mr-auto">
+          <li className="nav-item">
+            <a className="nav-link text-white nav-link-hover" href="#">
               Categorias
             </a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link text-white nav-link-hover" href="#">
+          <li className="nav-item">
+            <a className="nav-link text-white nav-link-hover" href="#">
               Ofertas
             </a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link text-white nav-link-hover" href="#">
+          <li className="nav-item">
+            <a className="nav-link text-white nav-link-hover" href="#">
               Trending
             </a>
           </li>
           {logged ? (
-            <li class="nav-item">
-              <a class="nav-link text-white nav-link-hover" href="#">
+            <li className="nav-item">
+              <a className="nav-link text-white nav-link-hover" href="#">
                 carrito
               </a>
             </li>
-          ) : (
-            <></>
-          )}
+          ) : null}
         </ul>
-        <div class="ml-auto">
+        <form className="form-inline ml-auto ">
+          <input
+            className="form-control rounded-pill border-white border-1 bg-transparent text-white mr-auto ml-auto mb-auto "
+            type="search"
+            placeholder="Buscar"
+            aria-label="Buscar"
+          />
+        </form>
+        <div className="ml-auto mt-auto">
           {logged ? (
             <>
-              <button class="btn text-white nav-link-hover ">
+              <button className="btn text-white nav-link-hover">
                 Cerrar sesion
               </button>
-              <button class="btn text-white border 2px nav-link-hover">
+              <button className="btn text-white border nav-link-hover">
                 Valentin
               </button>
             </>
           ) : (
             <>
-              <button class="btn text-white nav-link-hover">
-                Iniciar sesión
-              </button>
-              <button class="btn text-white border 2px nav-link-hover">
-                Registrarse
-              </button>
+              <a className=" text-white nav-link-hover">Iniciar sesión</a>
+              <a className=" text-white border-1 nav-link-hover">Registrarse</a>
             </>
           )}
         </div>

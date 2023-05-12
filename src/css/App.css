@@ -12,13 +12,19 @@ body {
   pointer-events: none;
 }
 
+.App-header img {
+  margin: 20px;
+  width: 40vw;
+}
+
 .App-header {
   background: #fff;
   background-image: url("https://images.alphacoders.com/103/1035818.jpg");
   background-repeat: no-repeat;
   background-size: cover;
+  background-position: center;
   background-attachment: fixed;
-  min-height: 80vh;
+  min-height: 60vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -26,6 +32,7 @@ body {
   font-size: calc(10px + 2vmin);
 }
 
-.navbar-link-hover {
-  color: #000;
+input::placeholder {
+  color: #fff;
+  text-shadow: none;
 }
