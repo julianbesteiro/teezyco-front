@@ -3,7 +3,7 @@ import logo from "../utils/logo.png";
 import "../css/Nav.css";
 
 function NavigationBar() {
-  const [logged, setLogged] = useState(true);
+  const [logged, setLogged] = useState(false);
 
   return (
     <nav
@@ -69,8 +69,12 @@ function NavigationBar() {
             </>
           ) : (
             <>
-              <a className=" text-white nav-link-hover">Iniciar sesión</a>
-              <a className=" text-white border-1 nav-link-hover">Registrarse</a>
+              <button className="btn text-white nav-link-hover">
+                Iniciar sesión
+              </button>
+              <button className="btn text-white border nav-link-hover">
+                Registrarse
+              </button>
             </>
           )}
         </div>
