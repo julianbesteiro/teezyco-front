@@ -7,16 +7,16 @@ const Categories = () => {
   return (
     <>
       <h2 className="mt-5 mb-5">Nuestras categorias famosas</h2>
-      <div class="row ">
-        <div class="col-sm-4 flex-column ">
+      <div className="row ">
+        <div className="col-sm-4 flex-column ">
           <p>Aestethic </p>
           <img className="border-examples" src={img[0]} alt="" height="70px" />
         </div>
-        <div class="col-sm-4">
+        <div className="col-sm-4">
           <p>oversized</p>
           <img className="border-examples" src={img[1]} alt="" height="700px" />
         </div>
-        <div class="col-sm-4">
+        <div className="col-sm-4">
           <p>urban</p>
           <img className="border-examples" src={img[2]} alt="" height="700px" />
         </div>
