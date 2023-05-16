@@ -1,6 +1,10 @@
+body {
+  overflow: hidden;
+}
+
 .form {
+  margin-top: 20px;
   width: 40vw;
-  height: 40vh;
   border: 2px solid #fff;
   padding: 15px;
 }
@@ -9,8 +13,7 @@
   width: 100vw;
   height: 100vh;
   display: flex;
-  top: 0;
-  position: absolute;
   align-items: center;
+  position: absolute;
   justify-content: center;
 }
