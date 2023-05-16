@@ -26,7 +26,10 @@ const Mainproducts = () => {
       if (products) {
         if (mySwiper) mySwiper.destroy();
 
-        const slidesPerView = Math.floor(window.innerWidth / 400);
+        const slidesPerView =
+          Math.floor(window.innerWidth / 400) < 10
+            ? Math.floor(window.innerWidth / 400)
+            : 9;
 
         mySwiper = new Swiper(".swiper-container", {
           slidesPerView: slidesPerView,
