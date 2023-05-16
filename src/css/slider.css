@@ -13,6 +13,7 @@ h3 {
   width: 100%;
   display: flex;
   flex-direction: column;
+  transition: 0.3s;
 }
 
 .swiper-slide * {
@@ -37,4 +38,8 @@ h3 {
   height: 400px;
   border: 2px solid #fff;
   box-shadow: 2px 2px #f00, -2px -2px #0ef;
+}
+
+.swiper-slide:hover {
+  transform: scale(1.2);
 }

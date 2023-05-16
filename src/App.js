@@ -3,6 +3,7 @@ import NavigationBar from "./common/NavigationBar";
 import img from "./utils/z render.png";
 import Categories from "./common/Categories";
 import Mainproducts from "./common/Mainproducts";
+import { Route } from "react-router-dom/dist/umd/react-router-dom.development";
 
 function App() {
   return (
@@ -12,7 +13,7 @@ function App() {
         <img src={img} alt="LogoTeeZCo" width="800px" />
       </header>
       <Categories />
-      <Mainproducts/>
+      <Mainproducts />
     </div>
   );
 }
