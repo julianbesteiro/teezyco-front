@@ -1,0 +1,16 @@
+.form {
+  width: 40vw;
+  height: 40vh;
+  border: 2px solid #fff;
+  padding: 15px;
+}
+
+.formContainer {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  top: 0;
+  position: absolute;
+  align-items: center;
+  justify-content: center;
+}

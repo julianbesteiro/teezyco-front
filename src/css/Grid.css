@@ -3,11 +3,10 @@
   margin: 80px 50px;
 }
 .row {
-  margin: 0px;
+  margin: 0px 4vw;
 }
 .col {
   padding: 0px;
-
   box-shadow: none;
   border: none;
 }
@@ -45,4 +44,10 @@
   display: flex;
   position: absolute;
   justify-content: space-between;
+  font-weight: bolder;
+}
+
+.icons p {
+  margin: 0px 15px;
+  font-size: 40px;
 }

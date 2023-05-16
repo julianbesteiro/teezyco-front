@@ -74,9 +74,9 @@ function NavigationBar() {
             </>
           ) : (
             <>
-              <button className="btn text-white nav-link-hover">
+              <Link to="/login" className="btn text-white nav-link-hover">
                 Iniciar sesión
-              </button>
+              </Link>
               <button className="btn text-white border nav-link-hover">
                 Registrarse
               </button>

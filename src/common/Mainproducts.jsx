@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import "../css/slider.css";
 import Swiper from "swiper";
+import { Link } from "react-router-dom";
 
 const Mainproducts = () => {
   const [products, setProducts] = useState();
@@ -70,6 +71,7 @@ const Mainproducts = () => {
                     }
                     alt="Imagen 3"
                   />
+
                   <div className="titles">
                     <h3>{elem.nombre}</h3>
                     <h3 className="price">${elem.price}</h3>

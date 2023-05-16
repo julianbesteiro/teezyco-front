@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import "../css/Grid.css";
+import { Link } from "react-router-dom";
 
 const Grid = () => {
   const [products, setProducts] = useState();
@@ -37,7 +38,9 @@ const Grid = () => {
                 {itemsToShow.map((product, subIndex) => (
                   <div className="col" key={`${index}-${subIndex}`}>
                     <div className="elem">
-                      <img src={product.img} alt="" />
+                      <Link to={"/products/individual/" + product.id}>
+                        <img src={product.img} alt="" />
+                      </Link>
                       <div className=" icons">
                         <p className="favs">♡</p>
                         <p className="carrito">🛒</p>
