@@ -19,18 +19,37 @@ const Mainproducts = () => {
     setProducts(arr);
   }, []);
 
+  let mySwiper;
+
   useEffect(() => {
-    if (products) {
-      let mySwiper = new Swiper(".swiper-container", {
-        slidesPerView: 5,
-        spaceBetween: 30,
-        loop: true,
-        navigation: {
-          nextEl: ".swiper-button-next",
-          prevEl: ".swiper-button-prev",
-        },
-      });
-    }
+    const updateSwiper = () => {
+      if (products) {
+        if (mySwiper) mySwiper.destroy();
+
+        const slidesPerView = Math.floor(window.innerWidth / 400);
+
+        mySwiper = new Swiper(".swiper-container", {
+          slidesPerView: slidesPerView,
+          spaceBetween: 30,
+          loop: true,
+          navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+          },
+        });
+      }
+    };
+
+    updateSwiper(); // Ejecutar la función una vez al cargar la página
+
+    // Agregar el listener del evento resize
+    window.addEventListener("resize", updateSwiper);
+
+    return () => {
+      // Limpiar el listener del evento resize al desmontar el componente
+      window.removeEventListener("resize", updateSwiper);
+      if (mySwiper) mySwiper.destroy();
+    };
   }, [products]);
 
   return (

@@ -35,7 +35,7 @@ h3 {
   height: 100%;
 }
 .swiper-slide img {
-  height: 400px;
+  width: 228px;
   border: 2px solid #fff;
   box-shadow: 2px 2px #f00, -2px -2px #0ef;
 }
