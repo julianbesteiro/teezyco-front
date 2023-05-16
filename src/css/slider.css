@@ -38,6 +38,7 @@ h3 {
   width: 228px;
   border: 2px solid #fff;
   box-shadow: 2px 2px #f00, -2px -2px #0ef;
+  padding: 3px;
 }
 
 .swiper-slide:hover {

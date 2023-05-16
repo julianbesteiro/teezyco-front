@@ -1,19 +1,17 @@
 import "./css/App.css";
 import NavigationBar from "./common/NavigationBar";
-import img from "./utils/z render.png";
-import Categories from "./common/Categories";
-import Mainproducts from "./common/Mainproducts";
-import { Route } from "react-router-dom/dist/umd/react-router-dom.development";
+import { Route, Routes } from "react-router-dom";
+import Main from "./common/Main";
+import Grid from "./components/Grid";
 
 function App() {
   return (
     <div className="App">
       <NavigationBar />
-      <header className="App-header">
-        <img src={img} alt="LogoTeeZCo" width="800px" />
-      </header>
-      <Categories />
-      <Mainproducts />
+      <Routes>
+        <Route path="/" element={<Main />} />
+        <Route path="/products/trending" element={<Grid />} />
+      </Routes>
     </div>
   );
 }
