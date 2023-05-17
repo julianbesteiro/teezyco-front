@@ -1,6 +1,7 @@
 import "./css/App.css";
 import NavigationBar from "./common/NavigationBar";
 import { Route, Routes } from "react-router-dom";
+import Cart from "./components/Cart";
 import Main from "./common/Main";
 import Grid from "./components/Grid";
 import Individual from "./components/Individual";

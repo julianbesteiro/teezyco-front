@@ -1,22 +1,19 @@
 import { useEffect, useState } from "react";
 import "../css/Grid.css";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 const Grid = () => {
   const [products, setProducts] = useState();
 
   useEffect(() => {
-    let arr = [];
-    for (let i = 0; i <= 31; i++) {
-      arr.push({
-        id: i,
-        price: 2000 + i,
-        nombre: "aesthethic 200" + i,
-        desc: "remera oversucia aaaa",
-        img: "https://d3ugyf2ht6aenh.cloudfront.net/stores/943/997/products/boy-beige1-2e3a2fe4fc6ce264d016676887628942-1024-1024.webp",
-      });
-    }
-    setProducts(arr);
+    axios
+      .get("http://localhost:3001/api/products/all")
+      .then((products) => {
+        console.log(products);
+        setProducts(products.data);
+      })
+      .catch((err) => console.error(err));
   }, []);
   let x = 4;
   if (window.innerWidth <= 1000) x = 1;
@@ -39,16 +36,16 @@ const Grid = () => {
                   <div className="col" key={`${index}-${subIndex}`}>
                     <div className="elem">
                       <Link to={"/products/individual/" + product.id}>
-                        <img src={product.img} alt="" />
+                        <img src={product.image} alt="" />
                       </Link>
                       <div className=" icons">
                         <p className="favs">♡</p>
                         <p className="carrito">🛒</p>
                       </div>
-                      <h3>{product.nombre}</h3>
+                      <h3>{product.title}</h3>
                       <h3 className="price">
                         precio: ${product.price} o 6 cuotas de $
-                        {Math.floor(product.price / 5)}
+                        {Math.floor(product.price / 6)}
                       </h3>
                     </div>
                   </div>
