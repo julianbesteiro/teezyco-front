@@ -2,6 +2,7 @@ body {
   color: #fff;
   background: #000;
   font-family: "Alegreya SC", serif;
+  overflow-x: hidden;
 }
 
 .App {
@@ -20,7 +21,7 @@ body {
 
 .App-header {
   background: #fff;
-  background-image: url("https://images.alphacoders.com/103/1035818.jpg");
+  background-image: url("../utils/x4k.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import logo from "../utils/logo.png";
 import "../css/Nav.css";
+import { Link } from "react-router-dom";
 
 function NavigationBar() {
   const [logged, setLogged] = useState(false);
@@ -10,9 +11,10 @@ function NavigationBar() {
       className="navbar navbar-expand-lg navbar-light sticky-top navbar-dark"
       id="nav"
     >
-      <a className="navbar-brand" href="#">
+      <Link to="/">
         <img src={logo} alt="" width="60px" />
-      </a>
+      </Link>
+
       <button
         className="navbar-toggler"
         type="button"
@@ -37,9 +39,12 @@ function NavigationBar() {
             </a>
           </li>
           <li className="nav-item">
-            <a className="nav-link text-white nav-link-hover" href="#">
+            <Link
+              className="nav-link text-white nav-link-hover"
+              to="/products/trending"
+            >
               Trending
-            </a>
+            </Link>
           </li>
           {logged ? (
             <li className="nav-item">
@@ -69,12 +74,15 @@ function NavigationBar() {
             </>
           ) : (
             <>
-              <button className="btn text-white nav-link-hover">
+              <Link to="/login" className="btn text-white nav-link-hover">
                 Iniciar sesión
-              </button>
-              <button className="btn text-white border nav-link-hover">
+              </Link>
+              <Link
+                to="/register"
+                className="btn text-white border nav-link-hover"
+              >
                 Registrarse
-              </button>
+              </Link>
             </>
           )}
         </div>

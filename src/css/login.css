@@ -1,0 +1,15 @@
+.form {
+  margin-top: 20px;
+  width: 40vw;
+  border: 2px solid #fff;
+  padding: 15px;
+}
+
+.formContainer {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  position: absolute;
+  justify-content: center;
+}
