@@ -1,13 +1,29 @@
 import { useState } from "react";
 import logo from "../utils/logo.png";
 import "../css/Nav.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import React from "react";
 import { useContext } from "react";
 import { UserContext } from "../context/userContext";
+import axios from "axios";
 
 function NavigationBar() {
-  const { name } = useContext(UserContext);
+  const { name, logOut } = useContext(UserContext);
+
+  const navigate = useNavigate();
+
+  const handleLogout = (e) => {
+    e.preventDefault();
+
+    axios
+      .post("http://localhost:3001/api/users/logout")
+      .then((res) => res.data)
+      .then(() => {
+        logOut();
+        navigate("/");
+      })
+      .catch((err) => console.log(err));
+  };
 
   return (
     <nav
@@ -69,7 +85,10 @@ function NavigationBar() {
           {name ? (
             <>
               <button className="btn text-white nav-link-hover">{name}</button>
-              <button className="btn text-white border nav-link-hover">
+              <button
+                className="btn text-white border nav-link-hover"
+                onClick={handleLogout}
+              >
                 Cerrar sesion
               </button>
             </>

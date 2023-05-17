@@ -22,7 +22,7 @@ const Register = () => {
       })
       .then((res) => {
         console.log("Usuario creado");
-        navigate("/");
+        navigate("/login");
       })
       .catch(() => alert("Se ha producido un error."));
   };
@@ -94,7 +94,7 @@ const Register = () => {
           />
         </div>
         <button type="submit" className="btn text-white">
-          Iniciar sesión
+          Registrarse
         </button>
       </form>
     </div>
