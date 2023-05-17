@@ -2,9 +2,12 @@ import { useState } from "react";
 import logo from "../utils/logo.png";
 import "../css/Nav.css";
 import { Link } from "react-router-dom";
+import React from "react";
+import { useContext } from "react";
+import { UserContext } from "../context/userContext";
 
 function NavigationBar() {
-  const [logged, setLogged] = useState(false);
+  const { name } = useContext(UserContext);
 
   return (
     <nav
@@ -46,7 +49,7 @@ function NavigationBar() {
               Trending
             </Link>
           </li>
-          {logged ? (
+          {name ? (
             <li className="nav-item">
               <a className="nav-link text-white nav-link-hover" href="#">
                 carrito
@@ -63,13 +66,11 @@ function NavigationBar() {
           />
         </form>
         <div className="ml-auto mt-auto">
-          {logged ? (
+          {name ? (
             <>
-              <button className="btn text-white nav-link-hover">
-                Cerrar sesion
-              </button>
+              <button className="btn text-white nav-link-hover">{name}</button>
               <button className="btn text-white border nav-link-hover">
-                Valentin
+                Cerrar sesion
               </button>
             </>
           ) : (
