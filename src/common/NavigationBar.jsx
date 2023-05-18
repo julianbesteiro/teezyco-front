@@ -1,5 +1,5 @@
 import { useState } from "react";
-import logo from "../utils/logo.png";
+import logo from "../assets/logo.png";
 import "../css/Nav.css";
 import { Link, useNavigate } from "react-router-dom";
 import React from "react";
@@ -23,6 +23,10 @@ function NavigationBar() {
         navigate("/");
       })
       .catch((err) => console.log(err));
+  };
+
+  const handleSearch = (e) => {
+    if (e.target.value) navigate(`search/${e.target.value}`);
   };
 
   return (
@@ -73,12 +77,18 @@ function NavigationBar() {
             </li>
           ) : null}
         </ul>
-        <form className="form-inline ml-auto ">
+        <form
+          className="form-inline ml-auto "
+          onSubmit={(e) => e.preventDefault()}
+        >
           <input
             className="form-control rounded-pill border-white border-1 bg-transparent text-white mr-auto ml-auto mb-auto "
             type="search"
             placeholder="Buscar"
             aria-label="Buscar"
+            onChange={(e) => {
+              handleSearch(e);
+            }}
           />
         </form>
         <div className="ml-auto mt-auto">

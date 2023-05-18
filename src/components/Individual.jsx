@@ -24,7 +24,7 @@ let Individual = () => {
         <img
           className="individual"
           src={
-            false
+            product.image
               ? product.image
               : "https://d3ugyf2ht6aenh.cloudfront.net/stores/943/997/products/boy-beige1-2e3a2fe4fc6ce264d016676887628942-1024-1024.webp"
           }
