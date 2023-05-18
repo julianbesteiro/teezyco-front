@@ -1,20 +1,32 @@
 import { useEffect, useState } from "react";
 import "../css/Grid.css";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 
 const Grid = () => {
   const [products, setProducts] = useState();
+  const { search } = useParams();
+
+  useEffect(() => {
+    if (!search)
+      axios
+        .get("http://localhost:3001/api/products/all")
+        .then((products) => {
+          setProducts(products.data);
+        })
+        .catch((err) => console.error(err));
+  }, []);
 
   useEffect(() => {
     axios
-      .get("http://localhost:3001/api/products/all")
+      .get(`http://localhost:3001/api/products/search/${search}`)
       .then((products) => {
-        console.log(products);
+        console.log("PRODUCTS en busqueda", products);
         setProducts(products.data);
       })
       .catch((err) => console.error(err));
-  }, []);
+  }, [search]);
+
   let x = 4;
   if (window.innerWidth <= 1000) x = 1;
 
