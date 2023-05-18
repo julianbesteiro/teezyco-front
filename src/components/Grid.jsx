@@ -1,12 +1,13 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import "../css/Grid.css";
 import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
+import { UserContext } from "../context/userContext";
 
 const Grid = () => {
   const [products, setProducts] = useState();
   const { search } = useParams();
-
+  const { id } = useContext(UserContext);
   const { pathname } = useLocation();
 
   const navigate = useNavigate();
@@ -46,6 +47,13 @@ const Grid = () => {
     navigate(`/user/products`);
   };
 
+ const handleCarrito=(e,productId)=>{
+   axios.post(`http://localhost:3001/api/cart/add/${id}/${productId}`).then(()=>{
+    console.log("agregado al carrito")
+    
+   }).catch((err) => console.error(err))
+ }
+
   let x = 4;
   if (window.innerWidth <= 1000) x = 1;
 
@@ -68,7 +76,7 @@ const Grid = () => {
                     <div className="elem">
                       <Link to={"/products/individual/" + product.id}>
                         <img src={
-            false
+            product.image
               ? product.image
               : "https://d3ugyf2ht6aenh.cloudfront.net/stores/943/997/products/boy-beige1-2e3a2fe4fc6ce264d016676887628942-1024-1024.webp"
           } alt="" />
@@ -96,7 +104,9 @@ const Grid = () => {
                             🗑️
                           </button>
                         ) : (
-                          <p className="carrito">🛒</p>
+                  <button className="carrito" onClick={(e)=>{handleCarrito(e, product.id)}}>
+                    🛒
+                    </button>
                         )}
                       </div>
                       <h3>{product.title}</h3>
