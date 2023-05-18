@@ -33,6 +33,7 @@ function App() {
         <Route path="/products/individual/:id" element={<Individual />} />
         <Route path="/products/trending" element={<Grid />} />
         <Route path="products/add" element={<ProductForm />} />
+        <Route path="user/products" element={<Grid />} />
       </Routes>
     </div>
   );
