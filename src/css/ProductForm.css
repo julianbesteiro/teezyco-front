@@ -1,0 +1,8 @@
+form {
+  width: 800px;
+}
+
+.formContainer {
+  position: absolute;
+  top: 20%;
+}

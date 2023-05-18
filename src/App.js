@@ -10,6 +10,7 @@ import Register from "./components/Register";
 import { useContext, useEffect } from "react";
 import { UserContext } from "./context/userContext";
 import axios from "axios";
+import ProductForm from "./components/ProductForm";
 
 function App() {
   const { logUser } = useContext(UserContext);
@@ -26,10 +27,12 @@ function App() {
       <NavigationBar />
       <Routes>
         <Route path="/" element={<Main />} />
+        <Route path="/cart" element={<Cart />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/products/individual/:id" element={<Individual />} />
         <Route path="/products/trending" element={<Grid />} />
+        <Route path="products/add" element={<ProductForm />} />
       </Routes>
     </div>
   );
