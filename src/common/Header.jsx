@@ -1,4 +1,4 @@
-import img from "../utils/z render.png";
+import img from "../assets/z render.png";
 
 const Header = () => (
   <header className="App-header">

@@ -23,6 +23,7 @@ const Login = () => {
       )
       .then((res) => {
         logUser(res.data);
+        console.log(res.data);
         navigate("/");
       })
       .catch((error) => {

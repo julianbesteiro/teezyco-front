@@ -1,5 +1,5 @@
 import { useState } from "react";
-import logo from "../utils/logo.png";
+import logo from "../assets/logo.png";
 import "../css/Nav.css";
 import { Link, useNavigate } from "react-router-dom";
 import React from "react";
@@ -71,9 +71,9 @@ function NavigationBar() {
           </li>
           {name ? (
             <li className="nav-item">
-              <a className="nav-link text-white nav-link-hover" href="#">
+              <Link className="nav-link text-white nav-link-hover" to='cart'>
                 carrito
-              </a>
+              </Link>
             </li>
           ) : null}
         </ul>
