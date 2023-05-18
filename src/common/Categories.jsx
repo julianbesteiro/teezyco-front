@@ -10,15 +10,15 @@ const Categories = () => {
       <div className="row ">
         <div className="col-sm-4 flex-column ">
           <p>Aestethic </p>
-          <img className="border-examples" src={img[0]} alt="" height="70px" />
+          <img className="border-examples" src={img[0]} alt="" />
         </div>
         <div className="col-sm-4">
           <p>oversized</p>
-          <img className="border-examples" src={img[1]} alt="" height="700px" />
+          <img className="border-examples" src={img[1]} alt="" />
         </div>
         <div className="col-sm-4">
           <p>urban</p>
-          <img className="border-examples" src={img[2]} alt="" height="700px" />
+          <img className="border-examples" src={img[2]} alt="" />
         </div>
       </div>
     </>

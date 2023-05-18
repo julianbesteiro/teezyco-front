@@ -11,6 +11,7 @@ import { useContext, useEffect } from "react";
 import { UserContext } from "./context/userContext";
 import axios from "axios";
 import ProductForm from "./components/ProductForm";
+import Footer from "./components/Footer";
 
 function App() {
   const { logUser } = useContext(UserContext);
@@ -36,6 +37,7 @@ function App() {
         <Route path="products/add" element={<ProductForm />} />
         <Route path="user/products" element={<Grid />} />
       </Routes>
+      <Footer />
     </div>
   );
 }
