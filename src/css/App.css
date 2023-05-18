@@ -10,7 +10,6 @@ body {
 }
 
 .App-logo {
-  height: 40vmin;
   pointer-events: none;
 }
 
@@ -40,8 +39,9 @@ input::placeholder {
 }
 
 .border-examples {
+  margin: 20px;
   border: 2px solid #fff;
   box-shadow: 2px 2px #f00, -2px -2px #0ef;
   margin-bottom: 40px;
-  height: 70vh;
+  width: 25vw;
 }
