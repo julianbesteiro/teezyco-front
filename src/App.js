@@ -34,6 +34,7 @@ function App() {
         <Route path="/products/trending" element={<Grid />} />
         <Route path="/search/:search" element={<Grid />} />
         <Route path="products/add" element={<ProductForm />} />
+        <Route path="products/edit/:productId" element={<ProductForm />} />
         <Route path="user/products" element={<Grid />} />
       </Routes>
     </div>

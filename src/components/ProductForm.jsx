@@ -2,7 +2,7 @@ import "../css/ProductForm.css";
 import React from "react";
 import axios from "axios";
 import { useState } from "react";
-import { useNavigate } from "react-router";
+import { useLocation, useNavigate, useParams } from "react-router";
 
 const ProductForm = () => {
   const [size, setSize] = useState("");
@@ -15,25 +15,46 @@ const ProductForm = () => {
   const [image, setImage] = useState("");
 
   const navigate = useNavigate();
+  const { productId } = useParams();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios
-      .post("http://localhost:3001/api/products/create", {
-        size,
-        color,
-        model,
-        stock,
-        price,
-        title,
-        description,
-        image,
-      })
-      .then((product) => {
-        console.log("Producto creado");
-        navigate("/");
-      })
-      .catch(() => alert("Se ha producido un error."));
+
+    if (productId !== undefined) {
+      axios
+        .put(`http://localhost:3001/api/products/mod/${productId}`, {
+          size,
+          color,
+          model,
+          stock,
+          price,
+          title,
+          description,
+          image,
+        })
+        .then((product) => {
+          console.log("Producto editado");
+          navigate("/");
+        })
+        .catch(() => alert("Se ha producido un error."));
+    } else {
+      axios
+        .post("http://localhost:3001/api/products/create", {
+          size,
+          color,
+          model,
+          stock,
+          price,
+          title,
+          description,
+          image,
+        })
+        .then((product) => {
+          console.log("Producto creado");
+          navigate("/");
+        })
+        .catch(() => alert("Se ha producido un error."));
+    }
   };
 
   return (
