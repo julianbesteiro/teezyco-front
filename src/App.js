@@ -30,6 +30,7 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/products/individual/:id" element={<Individual />} />
         <Route path="/products/trending" element={<Grid />} />
+        <Route path="/search/:search" element={<Grid />} />
       </Routes>
     </div>
   );
