@@ -7,6 +7,7 @@ const Grid = () => {
   const [products, setProducts] = useState();
   const { search } = useParams();
 
+  console.log("SEARCH EN GRID", search);
   useEffect(() => {
     if (!search)
       axios
@@ -18,13 +19,14 @@ const Grid = () => {
   }, []);
 
   useEffect(() => {
-    axios
-      .get(`http://localhost:3001/api/products/search/${search}`)
-      .then((products) => {
-        console.log("PRODUCTS en busqueda", products);
-        setProducts(products.data);
-      })
-      .catch((err) => console.error(err));
+    if (search !== undefined)
+      axios
+        .get(`http://localhost:3001/api/products/search/${search}`)
+        .then((products) => {
+          console.log("PRODUCTS en busqueda", products);
+          setProducts(products.data);
+        })
+        .catch((err) => console.error(err));
   }, [search]);
 
   let x = 4;
