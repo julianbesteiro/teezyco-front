@@ -11,16 +11,7 @@ const Grid = () => {
 
   const navigate = useNavigate();
 
-  // useEffect(() => {
-  //   if (!search)
-  //     axios
-  //       .get("http://localhost:3001/api/products/all")
-  //       .then((products) => {
-  //         setProducts(products.data);
-  //       })
-  //       .catch((err) => console.error(err));
-  // }, []);
-
+ 
   useEffect(() => {
     if (search !== undefined)
       axios
@@ -31,15 +22,7 @@ const Grid = () => {
         })
         .catch((err) => console.error(err));
   }, [search]);
-useEffect(() => {
-    axios
-      .get("http://localhost:3001/api/products/all")
-      .then((productos) => {
 
-        setProducts(productos.data);
-      })
-      .catch((err) => console.error(err));
-  }, []);
   useEffect(() => {
     if (!search)
       axios
@@ -54,7 +37,8 @@ useEffect(() => {
     if (productId) navigate(`/products/edit/${productId}`);
   };
   const handleDelete = (e, productId) => {
-      .delete(`http://localhost:3001/api/products/delete/${productId}`)
+      axios
+    .delete(`http://localhost:3001/api/products/delete/${productId}`)
       .then(() => {
         console.log("Producto eliminado");
       })
