@@ -12,8 +12,8 @@ import { UserContext } from "./context/userContext";
 import axios from "axios";
 
 function App() {
-  const { logUser } = useContext(UserContext);
-
+  const { logUser, id} = useContext(UserContext);
+console.log('app id ', id);
   useEffect(() => {
     axios
       .get("http://localhost:3001/api/users/me", { withCredentials: true })
@@ -27,6 +27,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Main />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/cart" element={<Cart />} />
         <Route path="/register" element={<Register />} />
         <Route path="/products/individual/:id" element={<Individual />} />
         <Route path="/products/trending" element={<Grid />} />

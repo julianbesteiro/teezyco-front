@@ -1,6 +1,7 @@
 import { useState, createContext } from "react";
 
 const userContextDefaultValues = {
+  id:"",
   name: "",
   lastname: "",
   email: "",
@@ -12,6 +13,8 @@ export const UserContext = createContext(userContextDefaultValues);
 
 const UserContextProvider = ({ children }) => {
   const [user, setUser] = useState({
+
+    id: "",
     name: "",
     lastname: "",
     email: "",
@@ -20,6 +23,7 @@ const UserContextProvider = ({ children }) => {
 
   const logUser = (user) => {
     setUser({
+      id: user.id,
       name: user.name,
       lastname: user.lastname,
       email: user.email,
@@ -29,6 +33,7 @@ const UserContextProvider = ({ children }) => {
 
   const logOut = () => {
     setUser({
+      id: '',
       name: "",
       lastname: "",
       email: "",
@@ -39,6 +44,7 @@ const UserContextProvider = ({ children }) => {
   return (
     <UserContext.Provider
       value={{
+        id: user.id,
         name: user.name,
         lastname: user.lastname,
         email: user.email,

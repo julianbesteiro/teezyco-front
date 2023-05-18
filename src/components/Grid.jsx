@@ -9,9 +9,9 @@ const Grid = () => {
   useEffect(() => {
     axios
       .get("http://localhost:3001/api/products/all")
-      .then((products) => {
-        console.log(products);
-        setProducts(products.data);
+      .then((productos) => {
+
+        setProducts(productos.data);
       })
       .catch((err) => console.error(err));
   }, []);
@@ -36,7 +36,11 @@ const Grid = () => {
                   <div className="col" key={`${index}-${subIndex}`}>
                     <div className="elem">
                       <Link to={"/products/individual/" + product.id}>
-                        <img src={product.image} alt="" />
+                        <img src={
+            false
+              ? product.image
+              : "https://d3ugyf2ht6aenh.cloudfront.net/stores/943/997/products/boy-beige1-2e3a2fe4fc6ce264d016676887628942-1024-1024.webp"
+          } alt="" />
                       </Link>
                       <div className=" icons">
                         <p className="favs">♡</p>
