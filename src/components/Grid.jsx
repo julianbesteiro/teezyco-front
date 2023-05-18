@@ -31,7 +31,15 @@ const Grid = () => {
         })
         .catch((err) => console.error(err));
   }, [search]);
+useEffect(() => {
+    axios
+      .get("http://localhost:3001/api/products/all")
+      .then((productos) => {
 
+        setProducts(productos.data);
+      })
+      .catch((err) => console.error(err));
+  }, []);
   useEffect(() => {
     if (!search)
       axios
@@ -45,9 +53,7 @@ const Grid = () => {
   const handleEdit = (e, productId) => {
     if (productId) navigate(`/products/edit/${productId}`);
   };
-
   const handleDelete = (e, productId) => {
-    axios
       .delete(`http://localhost:3001/api/products/delete/${productId}`)
       .then(() => {
         console.log("Producto eliminado");
@@ -77,7 +83,11 @@ const Grid = () => {
                   <div className="col" key={`${index}-${subIndex}`}>
                     <div className="elem">
                       <Link to={"/products/individual/" + product.id}>
-                        <img src={product.image} alt="" />
+                        <img src={
+            false
+              ? product.image
+              : "https://d3ugyf2ht6aenh.cloudfront.net/stores/943/997/products/boy-beige1-2e3a2fe4fc6ce264d016676887628942-1024-1024.webp"
+          } alt="" />
                       </Link>
                       <div className=" icons">
                         {pathname === "/user/products" ? (

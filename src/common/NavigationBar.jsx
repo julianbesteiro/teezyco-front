@@ -71,9 +71,9 @@ function NavigationBar() {
           </li>
           {name ? (
             <li className="nav-item">
-              <a className="nav-link text-white nav-link-hover" href="#">
+              <Link className="nav-link text-white nav-link-hover" to='cart'>
                 carrito
-              </a>
+              </Link>
             </li>
           ) : null}
         </ul>
