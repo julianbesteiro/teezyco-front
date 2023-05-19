@@ -4,7 +4,9 @@ body {
   font-family: "Alegreya SC", serif;
   overflow-x: hidden;
 }
-
+.content {
+  min-height: 71.4vh;
+}
 .App {
   text-align: center;
 }

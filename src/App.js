@@ -14,8 +14,8 @@ import ProductForm from "./components/ProductForm";
 import Footer from "./components/Footer";
 
 function App() {
-  const { logUser, id} = useContext(UserContext);
-console.log('app id ', id);
+  const { logUser, id } = useContext(UserContext);
+  console.log("app id ", id);
   useEffect(() => {
     axios
       .get("http://localhost:3001/api/users/me", { withCredentials: true })
@@ -26,19 +26,21 @@ console.log('app id ', id);
   return (
     <div className="App">
       <NavigationBar />
-      <Routes>
-        <Route path="/" element={<Main />} />
-        <Route path="/cart" element={<Cart />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/cart" element={<Cart />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/products/individual/:id" element={<Individual />} />
-        <Route path="/products/trending" element={<Grid />} />
-        <Route path="/search/:search" element={<Grid />} />
-        <Route path="products/add" element={<ProductForm />} />
-        <Route path="products/edit/:productId" element={<ProductForm />} />
-        <Route path="user/products" element={<Grid />} />
-      </Routes>
+      <div className="content">
+        <Routes>
+          <Route path="/" element={<Main />} />
+          <Route path="/cart" element={<Cart />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/cart" element={<Cart />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/products/individual/:id" element={<Individual />} />
+          <Route path="/products/trending" element={<Grid />} />
+          <Route path="/search/:search" element={<Grid />} />
+          <Route path="products/add" element={<ProductForm />} />
+          <Route path="products/edit/:productId" element={<ProductForm />} />
+          <Route path="user/products" element={<Grid />} />
+        </Routes>
+      </div>
       <Footer />
     </div>
   );
