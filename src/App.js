@@ -12,6 +12,7 @@ import { UserContext } from "./context/userContext";
 import axios from "axios";
 import ProductForm from "./components/ProductForm";
 import Footer from "./components/Footer";
+import Users from "./components/Users";
 
 function App() {
   const { logUser, id } = useContext(UserContext);
@@ -36,9 +37,10 @@ function App() {
           <Route path="/products/individual/:id" element={<Individual />} />
           <Route path="/products/trending" element={<Grid />} />
           <Route path="/search/:search" element={<Grid />} />
-          <Route path="products/add" element={<ProductForm />} />
-          <Route path="products/edit/:productId" element={<ProductForm />} />
-          <Route path="user/products" element={<Grid />} />
+          <Route path="/products/add" element={<ProductForm />} />
+          <Route path="/products/edit/:productId" element={<ProductForm />} />
+          <Route path="/user/products" element={<Grid />} />
+          <Route path="/user/users" element={<Users />} />
         </Routes>
       </div>
       <Footer />
