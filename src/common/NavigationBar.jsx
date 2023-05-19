@@ -8,8 +8,8 @@ import { UserContext } from "../context/userContext";
 import axios from "axios";
 
 function NavigationBar() {
-  const { name, logOut } = useContext(UserContext);
-
+  const { logOut } = useContext(UserContext);
+  let name = "valen";
   const navigate = useNavigate();
 
   const handleLogout = (e) => {
@@ -71,36 +71,66 @@ function NavigationBar() {
           </li>
           {name ? (
             <li className="nav-item">
-              <Link className="nav-link text-white nav-link-hover" to='cart'>
+              <Link className="nav-link text-white nav-link-hover" to="cart">
                 carrito
               </Link>
             </li>
           ) : null}
         </ul>
-        <form
-          className="form-inline ml-auto "
-          onSubmit={(e) => e.preventDefault()}
-        >
-          <input
-            className="form-control rounded-pill border-white border-1 bg-transparent text-white mr-auto ml-auto mb-auto "
-            type="search"
-            placeholder="Buscar"
-            aria-label="Buscar"
-            onChange={(e) => {
-              handleSearch(e);
-            }}
-          />
-        </form>
+
+        <input
+          className="form-control rounded-pill border-white border-1 bg-transparent text-white ml-auto mr-auto"
+          type="search"
+          placeholder="Buscar"
+          aria-label="Buscar"
+          id="search"
+          onChange={(e) => {
+            handleSearch(e);
+          }}
+        />
+
         <div className="ml-auto mt-auto">
           {name ? (
             <>
-              <button className="btn text-white nav-link-hover">{name}</button>
-              <button
-                className="btn text-white border nav-link-hover"
-                onClick={handleLogout}
-              >
-                Cerrar sesion
-              </button>
+              <div className="btn text-white  nav-link-hover">
+                <a
+                  class="nav-link dropdown-toggle text-white"
+                  href="#"
+                  id="userMenu"
+                  role="button"
+                  data-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                >
+                  {name}
+                </a>
+                <div
+                  class="dropdown-menu dropdown-menu-right"
+                  aria-labelledby="userMenu"
+                >
+                  <Link to="/user/products" class="dropdown-item" href="#">
+                    Productos
+                  </Link>
+                  <Link to="/products/add" class="dropdown-item" href="#">
+                    Agregar Productos
+                  </Link>
+                  <Link to="/users/all" class="dropdown-item" href="#">
+                    usuarios
+                  </Link>
+                  <Link to="/user" class="dropdown-item" href="#">
+                    perfil
+                  </Link>
+                  <Link to="/user/favs" class="dropdown-item" href="#">
+                    favoritos
+                  </Link>
+                  <button onClick={handleLogout} class="dropdown-item">
+                    cerrar sesion
+                  </button>
+                </div>
+              </div>
+              <Link to="/cart" className="text-white no-hover">
+                🛒
+              </Link>
             </>
           ) : (
             <>
