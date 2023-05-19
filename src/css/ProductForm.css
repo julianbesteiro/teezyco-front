@@ -3,6 +3,8 @@ form {
 }
 
 .formContainer {
-  position: absolute;
-  top: 20%;
+  background: #f00;
+  position: relative;
+  margin-top: 2px;
+  height: 100%;
 }

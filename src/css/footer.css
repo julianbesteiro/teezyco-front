@@ -1,12 +1,11 @@
 footer {
-  position: absolute;
+  position: relative;
   z-index: 10;
   margin-top: 60px;
   display: flex;
-  width: 100%;
   box-shadow: 0px -1px 1px #fff;
   background: #000;
-  margin-bottom: 0;
+  height: 100%;
 }
 
 @media (max-width: 1000px) {
