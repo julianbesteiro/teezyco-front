@@ -55,3 +55,9 @@
 #img {
   width: 100%;
 }
+.btn {
+  color: #fff;
+}
+.btn:hover {
+  color: #000;
+}

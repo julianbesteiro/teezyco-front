@@ -11,7 +11,11 @@
   background: #f00;
 }
 
-.nav-link-hover:hover {
+.color {
+  color: #fff !important;
+}
+
+.color:hover {
   color: #000 !important;
 }
 

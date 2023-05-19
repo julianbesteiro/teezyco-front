@@ -81,6 +81,7 @@ const Grid = () => {
                     <div className="elem">
                       <Link to={"/products/individual/" + product.id}>
                         <img
+                          id="img"
                           src={
                             product.image
                               ? product.image
