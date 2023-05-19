@@ -12,6 +12,7 @@ import { UserContext } from "./context/userContext";
 import axios from "axios";
 import ProductForm from "./components/ProductForm";
 import Footer from "./components/Footer";
+import Users from "./components/Users";
 
 function App() {
   const { logUser, id } = useContext(UserContext);
