@@ -1,7 +1,10 @@
 import "../css/footer.css";
 
 const Footer = () => (
-  <footer class="footer bg-transparent text-light">
+  <footer
+    class="footer 
+   text-light"
+  >
     <div class="row">
       <div class="col">
         <h3>Contacto</h3>
@@ -11,14 +14,12 @@ const Footer = () => (
         <p>Teléfono: +1 234 567 890</p>
         <p>Dirección: 123 Calle Principal, Ciudad</p>
       </div>
-      <div class=" text-center">
+      <div class=" col text-center">
         <h3>Teléfono</h3>
         <p>Teléfono: +1 234 567 890</p>
       </div>
     </div>
-    <p class="text-center">
-      © 2023 Nombre de la empresa. Todos los derechos reservados.
-    </p>
+    <p class="">© 2023 Nombre de la empresa. Todos los derechos reservados.</p>
   </footer>
 );
 export default Footer;

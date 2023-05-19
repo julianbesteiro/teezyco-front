@@ -25,26 +25,29 @@ function App() {
   }, []);
 
   return (
-    <div className="App">
-      <NavigationBar />
-      <div className="content">
-        <Routes>
-          <Route path="/" element={<Main />} />
-          <Route path="/cart" element={<Cart />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/cart" element={<Cart />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/products/individual/:id" element={<Individual />} />
-          <Route path="/products/trending" element={<Grid />} />
-          <Route path="/search/:search" element={<Grid />} />
-          <Route path="/products/add" element={<ProductForm />} />
-          <Route path="/products/edit/:productId" element={<ProductForm />} />
-          <Route path="/user/products" element={<Grid />} />
-          <Route path="/user/users" element={<Users />} />
-        </Routes>
-      </div>
+    <>
+      <div className="App">
+        <NavigationBar />
+        <div className="content">
+          <Routes>
+            <Route path="/" element={<Main />} />
+            <Route path="/cart" element={<Cart />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/cart" element={<Cart />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/products/individual/:id" element={<Individual />} />
+            <Route path="/products/trending" element={<Grid />} />
+            <Route path="/search/:search" element={<Grid />} />
+            <Route path="/products/add" element={<ProductForm />} />
+            <Route path="/products/edit/:productId" element={<ProductForm />} />
+            <Route path="/user/products" element={<Grid />} />
+            <Route path="/user/users" element={<Users />} />
+            <Route path="/user/products" element={<Grid />} />
+          </Routes>
+        </div>
       <Footer />
-    </div>
+      </div>
+    </>
   );
 }
 
