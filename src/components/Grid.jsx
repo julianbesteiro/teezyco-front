@@ -6,19 +6,21 @@ import { UserContext } from "../context/userContext";
 
 const Grid = () => {
   const [products, setProducts] = useState();
+  const [deleteProduct, setDeleteProduct] = useState(false);
+
   const { search } = useParams();
   const { id } = useContext(UserContext);
   const { pathname } = useLocation();
 
   const navigate = useNavigate();
 
- 
+  console.log("PRODUCTS", products);
+
   useEffect(() => {
     if (search !== undefined)
       axios
         .get(`http://localhost:3001/api/products/search/${search}`)
         .then((products) => {
-          console.log("PRODUCTS en busqueda", products);
           setProducts(products.data);
         })
         .catch((err) => console.error(err));
@@ -32,27 +34,30 @@ const Grid = () => {
           setProducts(products.data);
         })
         .catch((err) => console.error(err));
-  }, [products]);
+  }, [deleteProduct]);
 
   const handleEdit = (e, productId) => {
     if (productId) navigate(`/products/edit/${productId}`);
   };
   const handleDelete = (e, productId) => {
-      axios
-    .delete(`http://localhost:3001/api/products/delete/${productId}`)
+    axios
+      .delete(`http://localhost:3001/api/products/delete/${productId}`)
       .then(() => {
+        setDeleteProduct(!deleteProduct);
         console.log("Producto eliminado");
       })
       .catch((err) => console.error(err));
     navigate(`/user/products`);
   };
 
- const handleCarrito=(e,productId)=>{
-   axios.post(`http://localhost:3001/api/cart/add/${id}/${productId}`).then(()=>{
-    console.log("agregado al carrito")
-    
-   }).catch((err) => console.error(err))
- }
+  const handleCarrito = (e, productId) => {
+    axios
+      .post(`http://localhost:3001/api/cart/add/${id}/${productId}`)
+      .then(() => {
+        console.log("agregado al carrito");
+      })
+      .catch((err) => console.error(err));
+  };
 
   let x = 4;
   if (window.innerWidth <= 1000) x = 1;
@@ -75,11 +80,14 @@ const Grid = () => {
                   <div className="col" key={`${index}-${subIndex}`}>
                     <div className="elem">
                       <Link to={"/products/individual/" + product.id}>
-                        <img src={
-            product.image
-              ? product.image
-              : "https://d3ugyf2ht6aenh.cloudfront.net/stores/943/997/products/boy-beige1-2e3a2fe4fc6ce264d016676887628942-1024-1024.webp"
-          } alt="" />
+                        <img
+                          src={
+                            product.image
+                              ? product.image
+                              : "https://d3ugyf2ht6aenh.cloudfront.net/stores/943/997/products/boy-beige1-2e3a2fe4fc6ce264d016676887628942-1024-1024.webp"
+                          }
+                          alt=""
+                        />
                       </Link>
                       <div className=" icons">
                         {pathname === "/user/products" ? (
@@ -104,9 +112,14 @@ const Grid = () => {
                             🗑️
                           </button>
                         ) : (
-                  <button className="carrito" onClick={(e)=>{handleCarrito(e, product.id)}}>
-                    🛒
-                    </button>
+                          <button
+                            className="carrito"
+                            onClick={(e) => {
+                              handleCarrito(e, product.id);
+                            }}
+                          >
+                            🛒
+                          </button>
                         )}
                       </div>
                       <h3>{product.title}</h3>
