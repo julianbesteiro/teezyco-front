@@ -13,7 +13,7 @@ const ProductForm = () => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [image, setImage] = useState("");
-
+  const [imgPreview, setImg] = useState("");
   const navigate = useNavigate();
   const { productId } = useParams();
 
@@ -59,98 +59,107 @@ const ProductForm = () => {
 
   return (
     <div className="formContainer">
-      <form onSubmit={handleSubmit}>
-        <div class="mb-3">
-          <label for="size" class="form-label">
-            Tamaño
-          </label>
-          <input
-            type="text"
-            className="form-control bg-transparent text-white"
-            id="size"
-            placeholder="Ingrese el tamaño"
-            value={size}
-            onChange={(e) => {
-              setSize(e.target.value);
-            }}
-          />
+      <div className="row">
+        <div className="cont">
+          <img src={image} alt="" id="imgPreview" className="col" />
         </div>
-        <div class="mb-3">
-          <label for="color" class="form-label">
-            Color
-          </label>
-          <input
-            type="text"
-            class="form-control bg-transparent text-white"
-            id="color"
-            placeholder="Ingrese el color"
-            value={color}
-            onChange={(e) => {
-              setColor(e.target.value);
-            }}
-          />
+      </div>
+      <form onSubmit={handleSubmit} className="container">
+        <div className="row">
+          <div class="col mb-3 ml-3 mr-3">
+            <label for="size" class="form-label">
+              Tamaño
+            </label>
+            <input
+              type="text"
+              className="form-control bg-transparent text-white"
+              id="size"
+              placeholder="Ingrese el tamaño"
+              value={size}
+              onChange={(e) => {
+                setSize(e.target.value);
+              }}
+            />
+          </div>
+          <div class="col mb-3 ml-3 mr-3">
+            <label for="color" class="form-label">
+              Color
+            </label>
+            <input
+              type="text"
+              class="form-control bg-transparent text-white"
+              id="color"
+              placeholder="Ingrese el color"
+              value={color}
+              onChange={(e) => {
+                setColor(e.target.value);
+              }}
+            />
+          </div>
+          <div class="col mb-3 ml-3 mr-3">
+            <label for="model" class="form-label">
+              Modelo
+            </label>
+            <input
+              type="text"
+              class="form-control bg-transparent text-white"
+              id="model"
+              placeholder="Ingrese el modelo"
+              value={model}
+              onChange={(e) => {
+                setModel(e.target.value);
+              }}
+            />
+          </div>
         </div>
-        <div class="mb-3">
-          <label for="model" class="form-label">
-            Modelo
-          </label>
-          <input
-            type="text"
-            class="form-control bg-transparent text-white"
-            id="model"
-            placeholder="Ingrese el modelo"
-            value={model}
-            onChange={(e) => {
-              setModel(e.target.value);
-            }}
-          />
+        <div className="row ">
+          <div class="col mb-3 ml-3 mr-3">
+            <label for="stock" class="form-label">
+              Stock
+            </label>
+            <input
+              type="number"
+              class="form-control bg-transparent text-white"
+              id="stock"
+              placeholder="Ingrese el stock"
+              value={stock}
+              onChange={(e) => {
+                setStock(e.target.value);
+              }}
+            />
+          </div>
+          <div class="col mb-3 ml-3 mr-3">
+            <label for="price" class="form-label">
+              Precio
+            </label>
+            <input
+              type="number"
+              class="form-control bg-transparent text-white"
+              id="price"
+              placeholder="Ingrese el precio"
+              value={price}
+              onChange={(e) => {
+                setPrice(e.target.value);
+              }}
+            />
+          </div>
+          <div class="col mb-3 ml-3 mr-3">
+            <label for="title" class="form-label">
+              Título
+            </label>
+            <input
+              type="text"
+              class="form-control bg-transparent text-white"
+              id="title"
+              placeholder="Ingrese el título"
+              value={title}
+              onChange={(e) => {
+                setTitle(e.target.value);
+              }}
+            />
+          </div>
         </div>
-        <div class="mb-3">
-          <label for="stock" class="form-label">
-            Stock
-          </label>
-          <input
-            type="number"
-            class="form-control bg-transparent text-white"
-            id="stock"
-            placeholder="Ingrese el stock"
-            value={stock}
-            onChange={(e) => {
-              setStock(e.target.value);
-            }}
-          />
-        </div>
-        <div class="mb-3">
-          <label for="price" class="form-label">
-            Precio
-          </label>
-          <input
-            type="number"
-            class="form-control bg-transparent text-white"
-            id="price"
-            placeholder="Ingrese el precio"
-            value={price}
-            onChange={(e) => {
-              setPrice(e.target.value);
-            }}
-          />
-        </div>
-        <div class="mb-3">
-          <label for="title" class="form-label">
-            Título
-          </label>
-          <input
-            type="text"
-            class="form-control bg-transparent text-white"
-            id="title"
-            placeholder="Ingrese el título"
-            value={title}
-            onChange={(e) => {
-              setTitle(e.target.value);
-            }}
-          />
-        </div>
-        <div class="mb-3">
+        <div class="mb-3 ml-5 mr-5 ">
           <label for="description" class="form-label">
             Descripción
           </label>
@@ -163,7 +172,7 @@ const ProductForm = () => {
             }}
           ></textarea>
         </div>
-        <div class="mb-3">
+        <div class="mb-3 ml-5 mr-5">
           <label for="image" class="form-label">
             Imagen
           </label>
@@ -177,7 +186,7 @@ const ProductForm = () => {
             }}
           />
         </div>
-        <button type="submit" class="btn btn-primary">
+        <button type="submit" class="btn bg-transparent ">
           Guardar
         </button>
       </form>
