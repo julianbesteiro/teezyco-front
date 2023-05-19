@@ -5,7 +5,7 @@ body {
   overflow-x: hidden;
 }
 .content {
-  min-height: 71.4vh;
+  min-height: 100vh;
 }
 .App {
   text-align: center;

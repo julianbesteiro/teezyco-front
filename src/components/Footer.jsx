@@ -1,7 +1,10 @@
 import "../css/footer.css";
 
 const Footer = () => (
-  <footer class="footer bg-transparent text-light">
+  <footer
+    class="footer 
+   text-light"
+  >
     <div class="row">
       <div class="col">
         <h3>Contacto</h3>
