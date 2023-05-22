@@ -1,5 +1,5 @@
 import Header from "./Header";
-import Categories from "./Categories";
+import Categories from "../components/Categories";
 import Mainproducts from "./Mainproducts";
 const Main = () => (
   <>

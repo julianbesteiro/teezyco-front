@@ -13,6 +13,7 @@ import axios from "axios";
 import ProductForm from "./components/ProductForm";
 import Footer from "./components/Footer";
 import Users from "./components/Users";
+import Categories from "./components/Categories";
 
 function App() {
   const { logUser, id } = useContext(UserContext);
@@ -41,6 +42,8 @@ function App() {
           <Route path="/products/edit/:productId" element={<ProductForm />} />
           <Route path="/user/products" element={<Grid />} />
           <Route path="/user/users" element={<Users />} />
+          <Route path="/categories" element={<Categories />} />
+          <Route path="/categories/:category" element={<Grid />} />
         </Routes>
       </div>
       <Footer />
