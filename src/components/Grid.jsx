@@ -16,8 +16,9 @@ const Grid = () => {
 
   // if (category !== undefined) search = category;
 
+  console.log("SEARCH", search);
   useEffect(() => {
-    if (search !== undefined)
+    if (search && search != "undefined")
       axios
         .get(`http://localhost:3001/api/products/search/${search}`)
         .then((products) => {
@@ -27,12 +28,13 @@ const Grid = () => {
   }, [search]);
 
   useEffect(() => {
-    axios
-      .get(`http://localhost:3001/api/products/search/${category}`)
-      .then((products) => {
-        setProducts(products.data);
-      })
-      .catch((err) => console.error(err));
+    if (category)
+      axios
+        .get(`http://localhost:3001/api/products/search/${category}`)
+        .then((products) => {
+          setProducts(products.data);
+        })
+        .catch((err) => console.error(err));
   }, [category]);
 
   useEffect(() => {
