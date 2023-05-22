@@ -25,7 +25,8 @@ body {
   background-image: url("../assets/x4k.jpg");
   background-repeat: no-repeat;
   background-size: cover;
-  background-position: center;
+  background-position: bottom;
+  background-position-y: top;
   background-attachment: fixed;
   min-height: 60vh;
   display: flex;
