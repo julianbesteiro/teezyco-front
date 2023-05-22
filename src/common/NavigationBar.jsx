@@ -8,8 +8,7 @@ import { UserContext } from "../context/userContext";
 import axios from "axios";
 
 function NavigationBar() {
-  const { logOut } = useContext(UserContext);
-  let name = "valen";
+  const { name, logOut } = useContext(UserContext);
   const navigate = useNavigate();
 
   const handleLogout = (e) => {
@@ -56,29 +55,20 @@ function NavigationBar() {
               className="nav-link text-white nav-link-hover"
               to="/categories"
             >
+
               Categorias
             </Link>
           </li>
           <li className="nav-item">
-            <a className="nav-link text-white nav-link-hover" href="#">
+            <a className="nav-link color" href="#">
               Ofertas
             </a>
           </li>
           <li className="nav-item">
-            <Link
-              className="nav-link text-white nav-link-hover"
-              to="/products/trending"
-            >
+            <Link className="nav-link  color" to="/products/trending">
               Trending
             </Link>
           </li>
-          {name ? (
-            <li className="nav-item">
-              <Link className="nav-link text-white nav-link-hover" to="cart">
-                carrito
-              </Link>
-            </li>
-          ) : null}
         </ul>
 
         <input
@@ -95,7 +85,7 @@ function NavigationBar() {
         <div className="ml-auto mt-auto">
           {name ? (
             <>
-              <div className="btn text-white  nav-link-hover">
+              <div className="btn   nav-link-hover">
                 <a
                   class="nav-link dropdown-toggle text-white"
                   href="#"
