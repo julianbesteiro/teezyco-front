@@ -66,7 +66,9 @@ const Categories = () => {
                 {itemsToShow.map((category, subIndex) => (
                   <div className="col" key={`${index}-${subIndex}`}>
                     <div className="elem">
-                      <Link to={`/categories/${category.id}`}>
+                      <h3>{category.title}</h3>
+
+                      <Link className="col" to={`/categories/${category.id}`}>
                         <img
                           id="img"
                           src={
@@ -104,7 +106,6 @@ const Categories = () => {
                           ""
                         )}
                       </div>
-                      <h3>{category.title}</h3>
                     </div>
                   </div>
                 ))}

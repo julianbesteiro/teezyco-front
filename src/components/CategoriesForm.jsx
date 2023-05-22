@@ -52,7 +52,7 @@ const CategoriesForm = () => {
         <div className="row">
           <div class="col mb-3 ml-3 mr-3">
             <label for="model" class="form-label">
-              Modelo
+              Categoria
             </label>
             <input
               type="text"

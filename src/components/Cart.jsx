@@ -40,13 +40,16 @@ const Cart = () => {
   }, [quantities]);
 
   const addToCart = (itemId, number) => {
-    setQuantities(number);
+    setQuantities((prevQuantities) => ({
+      ...prevQuantities,
+      [itemId]: number,
+    }));
     setProductId(itemId);
   };
 
   const getTotalCompra = () => {
     return cartItems.reduce((total, item) => {
-      const itemQuantity = quantities[item.id] || 1;
+      const itemQuantity = parseInt(quantities[item.id]) || 1; // Convertir a número entero o usar 1 por defecto
       return total + item.price * itemQuantity;
     }, 0);
   };
