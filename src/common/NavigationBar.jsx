@@ -55,7 +55,6 @@ function NavigationBar() {
               className="nav-link text-white nav-link-hover"
               to="/categories"
             >
-
               Categorias
             </Link>
           </li>
@@ -106,6 +105,12 @@ function NavigationBar() {
                   </Link>
                   <Link to="/products/add" class="dropdown-item" href="#">
                     Agregar Productos
+                  </Link>
+                  <Link to="/user/categories" class="dropdown-item" href="#">
+                    Categorias
+                  </Link>
+                  <Link to="/categories/add" class="dropdown-item" href="#">
+                    Agregar Categorias
                   </Link>
                   <Link to="/users/all" class="dropdown-item" href="#">
                     usuarios

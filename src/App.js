@@ -14,6 +14,7 @@ import ProductForm from "./components/ProductForm";
 import Footer from "./components/Footer";
 import Users from "./components/Users";
 import Categories from "./components/Categories";
+import CategoriesForm from "./components/CategoriesForm";
 
 function App() {
   const { logUser, id } = useContext(UserContext);
@@ -41,8 +42,16 @@ function App() {
           <Route path="/products/add" element={<ProductForm />} />
           <Route path="/products/edit/:productId" element={<ProductForm />} />
           <Route path="/user/products" element={<Grid />} />
-          <Route path="/user/users" element={<Users />} />
+          <Route path="/users/all" element={<Users />} />
           <Route path="/categories" element={<Categories />} />
+          <Route path="/user/categories" element={<Categories />} />
+
+          <Route path="/categories/add" element={<CategoriesForm />} />
+          <Route
+            path="/categories/edit/:categoryId"
+            element={<CategoriesForm />}
+          />
+
           <Route path="/categories/:category" element={<Grid />} />
         </Routes>
       </div>
