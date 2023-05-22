@@ -51,9 +51,13 @@ function NavigationBar() {
       <div className="collapse navbar-collapse" id="navbarNav">
         <ul className="navbar-nav mr-auto">
           <li className="nav-item">
-            <a className="nav-link color" href="#">
+            <Link
+              className="nav-link text-white nav-link-hover"
+              to="/categories"
+            >
+
               Categorias
-            </a>
+            </Link>
           </li>
           <li className="nav-item">
             <a className="nav-link color" href="#">

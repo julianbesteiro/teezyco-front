@@ -8,13 +8,13 @@ const Grid = () => {
   const [products, setProducts] = useState();
   const [deleteProduct, setDeleteProduct] = useState(false);
 
-  const { search } = useParams();
+  let { search, category } = useParams();
   const { id } = useContext(UserContext);
   const { pathname } = useLocation();
 
   const navigate = useNavigate();
 
-  console.log("PRODUCTS", products);
+  // if (category !== undefined) search = category;
 
   useEffect(() => {
     if (search !== undefined)
@@ -27,7 +27,16 @@ const Grid = () => {
   }, [search]);
 
   useEffect(() => {
-    if (!search)
+    axios
+      .get(`http://localhost:3001/api/products/search/${category}`)
+      .then((products) => {
+        setProducts(products.data);
+      })
+      .catch((err) => console.error(err));
+  }, [category]);
+
+  useEffect(() => {
+    if (!search && !category)
       axios
         .get("http://localhost:3001/api/products/all")
         .then((products) => {
