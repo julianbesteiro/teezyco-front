@@ -1,42 +1,119 @@
-import React from "react";
+import React, { useState } from "react";
 import "../css/Grid.css";
-
-import { Link } from "react-router-dom";
+import axios from "axios";
+import { useEffect } from "react";
+import { Navigate, useNavigate } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const Categories = () => {
-  let img = [
-    "https://d3ugyf2ht6aenh.cloudfront.net/stores/941/707/products/heather-tee-mockup-with-a-hanger-floating-against-a-flat-wall-27733-28x1-59c9ca03178ad05e1a15891446393938-1024-1024.png",
-    "https://d3ugyf2ht6aenh.cloudfront.net/stores/001/142/133/products/whatsapp-image-2022-03-22-at-3-30-43-pm1-f08cec60e48ef04e0216479748309886-640-0.jpeg",
-    "https://d2r9epyceweg5n.cloudfront.net/stores/002/904/304/products/dsc08342-2-51-3ba1aec4891b43357d16777970655851-640-0.webp",
-  ];
+  const { pathname } = useLocation();
+  const [categories, setCategories] = useState();
+  const [deleteCategory, setDeleteCategory] = useState(false);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (categories)
+      axios
+        .get("http://localhost:3001/api/categories/all")
+        .then((categories) => {
+          setCategories(categories.data);
+        })
+        .catch((err) => console.error(err));
+  }, [deleteCategory]);
+
+  useEffect(() => {
+    if (!categories)
+      axios
+        .get("http://localhost:3001/api/categories/all")
+        .then((categories) => {
+          setCategories(categories.data);
+        })
+        .catch((err) => console.error(err));
+  }, []);
+
+  const handleEdit = (e, categoryId) => {
+    if (categoryId) navigate(`/categories/edit/${categoryId}`);
+  };
+
+  const handleDelete = (e, categoryId) => {
+    axios
+      .delete(`http://localhost:3001/api/categories/delete/${categoryId}`)
+      .then(() => {
+        setDeleteCategory(!deleteCategory);
+        console.log("Categoria eliminada");
+      })
+      .catch((err) => console.error(err));
+    navigate(`/user/categories`);
+  };
+
+  let x = 4;
+  if (window.innerWidth <= 1000) x = 1;
+
   return (
     <>
-      <h2 className="mt-5 mb-5">Nuestras categorias famosas</h2>
-      <div className="row ">
-        <Link to="/categories/aesthetic">
-          <div className="col-sm-4 flex-column ">
-            <p>Aesthetic </p>
+      {categories &&
+        categories.length > 0 &&
+        categories.map((item, index) => {
+          if (index % x === 0) {
+            const remainingItems = categories.slice(index);
+            const itemsToShow =
+              remainingItems.length >= x
+                ? remainingItems.slice(0, x)
+                : remainingItems;
 
-            <img className="border-examples" src={img[0]} alt="" />
-          </div>
-        </Link>
+            return (
+              <div className="row" key={index}>
+                {itemsToShow.map((category, subIndex) => (
+                  <div className="col" key={`${index}-${subIndex}`}>
+                    <div className="elem">
+                      <Link to={`/categories/${category.id}`}>
+                        <img
+                          id="img"
+                          src={
+                            category.image
+                              ? category.image
+                              : "https://d3ugyf2ht6aenh.cloudfront.net/stores/943/997/products/boy-beige1-2e3a2fe4fc6ce264d016676887628942-1024-1024.webp"
+                          }
+                          alt=""
+                        />
+                      </Link>
 
-        <Link to="/categories/oversize">
-          <div className="col-sm-4">
-            <p>Oversized</p>
-
-            <img className="border-examples" src={img[1]} alt="" />
-          </div>
-        </Link>
-
-        <Link to="/categories/urban">
-          <div className="col-sm-4">
-            <p>Urban</p>
-
-            <img className="border-examples" src={img[2]} alt="" />
-          </div>
-        </Link>
-      </div>
+                      <div className=" icons">
+                        {pathname === "/user/categories" ? (
+                          <button
+                            className="favs"
+                            onClick={(e) => {
+                              handleEdit(e, category.id);
+                            }}
+                          >
+                            ✎
+                          </button>
+                        ) : (
+                          ""
+                        )}
+                        {pathname === "/user/categories" ? (
+                          <button
+                            className="carrito"
+                            onClick={(e) => {
+                              handleDelete(e, category.id);
+                            }}
+                          >
+                            🗑️
+                          </button>
+                        ) : (
+                          ""
+                        )}
+                      </div>
+                      <h3>{category.title}</h3>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            );
+          } else {
+            return null;
+          }
+        })}
     </>
   );
 };

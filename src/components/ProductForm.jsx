@@ -7,7 +7,7 @@ import { useLocation, useNavigate, useParams } from "react-router";
 const ProductForm = () => {
   const [size, setSize] = useState("");
   const [color, setColor] = useState("");
-  const [model, setModel] = useState("");
+  const [category, setCategory] = useState("");
   const [stock, setStock] = useState("");
   const [price, setPrice] = useState("");
   const [title, setTitle] = useState("");
@@ -25,7 +25,7 @@ const ProductForm = () => {
         .put(`http://localhost:3001/api/products/mod/${productId}`, {
           size,
           color,
-          model,
+          category,
           stock,
           price,
           title,
@@ -42,7 +42,7 @@ const ProductForm = () => {
         .post("http://localhost:3001/api/products/create", {
           size,
           color,
-          model,
+          category,
           stock,
           price,
           title,
@@ -105,9 +105,9 @@ const ProductForm = () => {
               class="form-control bg-transparent text-white"
               id="model"
               placeholder="Ingrese el modelo"
-              value={model}
+              value={category}
               onChange={(e) => {
-                setModel(e.target.value);
+                setCategory(e.target.value);
               }}
             />
           </div>
