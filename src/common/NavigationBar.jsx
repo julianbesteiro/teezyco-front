@@ -8,7 +8,7 @@ import { UserContext } from "../context/userContext";
 import axios from "axios";
 
 function NavigationBar() {
-  const { name, logOut } = useContext(UserContext);
+  const { name, logOut, admin } = useContext(UserContext);
   const navigate = useNavigate();
 
   const handleLogout = (e) => {
@@ -82,7 +82,7 @@ function NavigationBar() {
         />
 
         <div className="ml-auto mt-auto">
-          {name ? (
+          {true ? (
             <>
               <div className="btn   nav-link-hover">
                 <a
@@ -100,21 +100,31 @@ function NavigationBar() {
                   class="dropdown-menu dropdown-menu-right"
                   aria-labelledby="userMenu"
                 >
-                  <Link to="/user/products" class="dropdown-item" href="#">
-                    Productos
-                  </Link>
-                  <Link to="/products/add" class="dropdown-item" href="#">
-                    Agregar Productos
-                  </Link>
-                  <Link to="/user/categories" class="dropdown-item" href="#">
-                    Categorias
-                  </Link>
-                  <Link to="/categories/add" class="dropdown-item" href="#">
-                    Agregar Categorias
-                  </Link>
-                  <Link to="/users/all" class="dropdown-item" href="#">
-                    usuarios
-                  </Link>
+                  {admin ? (
+                    <>
+                      <Link to="/user/products" class="dropdown-item" href="#">
+                        Productos
+                      </Link>
+                      <Link to="/products/add" class="dropdown-item" href="#">
+                        Agregar Productos
+                      </Link>
+                      <Link
+                        to="/user/categories"
+                        class="dropdown-item"
+                        href="#"
+                      >
+                        Categorias
+                      </Link>
+                      <Link to="/categories/add" class="dropdown-item" href="#">
+                        Agregar Categorias
+                      </Link>
+                      <Link to="/users/all" class="dropdown-item" href="#">
+                        usuarios
+                      </Link>
+                    </>
+                  ) : (
+                    ""
+                  )}
                   <Link to="/user" class="dropdown-item" href="#">
                     perfil
                   </Link>
