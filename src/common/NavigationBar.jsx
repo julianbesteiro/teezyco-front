@@ -100,6 +100,9 @@ function NavigationBar() {
                   class="dropdown-menu dropdown-menu-right"
                   aria-labelledby="userMenu"
                 >
+                  <Link to="/user/purchases" class="dropdown-item" href="#">
+                    Historial de compras
+                  </Link>
                   <Link to="/user/products" class="dropdown-item" href="#">
                     Productos
                   </Link>
@@ -113,16 +116,16 @@ function NavigationBar() {
                     Agregar Categorias
                   </Link>
                   <Link to="/users/all" class="dropdown-item" href="#">
-                    usuarios
+                    Usuarios
                   </Link>
                   <Link to="/user" class="dropdown-item" href="#">
-                    perfil
+                    Perfil
                   </Link>
                   <Link to="/user/favs" class="dropdown-item" href="#">
-                    favoritos
+                    Favoritos
                   </Link>
                   <button onClick={handleLogout} class="dropdown-item">
-                    cerrar sesion
+                    Cerrar sesion
                   </button>
                 </div>
               </div>
