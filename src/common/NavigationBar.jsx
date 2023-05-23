@@ -82,7 +82,7 @@ function NavigationBar() {
         />
 
         <div className="ml-auto mt-auto">
-          {true ? (
+          {name ? (
             <>
               <div className="btn   nav-link-hover">
                 <a
@@ -118,13 +118,13 @@ function NavigationBar() {
                       <Link to="/categories/add" class="dropdown-item" href="#">
                         Agregar Categorias
                       </Link>
-                      <Link to="/users/all" class="dropdown-item" href="#">
-                        usuarios
-                      </Link>
                     </>
                   ) : (
                     ""
                   )}
+                  <Link to="/users/all" class="dropdown-item" href="#">
+                    usuarios
+                  </Link>
                   <Link to="/user" class="dropdown-item" href="#">
                     perfil
                   </Link>
