@@ -6,15 +6,12 @@ import { UserContext } from "../context/userContext";
 const Cart = () => {
   const [cartItems, setCartItems] = useState([]);
   const [quantities, setQuantities] = useState({});
-  const [productId, setProductId] = useState("");
-
   const { id } = useContext(UserContext);
 
   useEffect(() => {
     axios
       .get(`http://localhost:3001/api/cart/${id}`)
       .then((response) => {
-       // console.log("response.data del get",response.data);
         setCartItems(response.data);
       })
       .catch((err) => console.error(err));
@@ -29,24 +26,18 @@ const Cart = () => {
       .catch((err) => console.error(err));
   };
 
-
-
-
   const addToCart = (itemId, number) => {
-    setProductId(itemId);
-    
+
     axios
     .post(`http://localhost:3001/api/cart/add/${id}/${itemId}`, {
       quantity: number, // Enviar la cantidad al backend
     })
-    .then((response) => {
-     // console.log("response.data del post",response.data);
+    .then(() => {
       setQuantities({...quantities, [itemId]: number})
       
     })
     .catch((err) => console.error(err));
     
-
   };
 
   const getTotalCompra = () => {
