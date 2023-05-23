@@ -119,20 +119,23 @@ function NavigationBar() {
                         Agregar Categorias
                       </Link>
                     </>
+                    <Link to="/users/all" class="dropdown-item" href="#">
+                    Usuarios
+                  </Link>
                   ) : (
                     ""
                   )}
-                  <Link to="/users/all" class="dropdown-item" href="#">
-                    usuarios
+                  <Link to="/user/purchases" class="dropdown-item" href="#">
+                    Historial de compras
                   </Link>
                   <Link to="/user" class="dropdown-item" href="#">
-                    perfil
+                    Perfil
                   </Link>
                   <Link to="/user/favs" class="dropdown-item" href="#">
-                    favoritos
+                    Favoritos
                   </Link>
                   <button onClick={handleLogout} class="dropdown-item">
-                    cerrar sesion
+                    Cerrar sesion
                   </button>
                 </div>
               </div>

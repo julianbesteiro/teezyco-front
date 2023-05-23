@@ -13,6 +13,8 @@ import axios from "axios";
 import ProductForm from "./components/ProductForm";
 import Footer from "./components/Footer";
 import Users from "./components/Users";
+import Purchases from "./components/Purchases";
+
 import Categories from "./components/Categories";
 import CategoriesForm from "./components/CategoriesForm";
 
@@ -48,6 +50,7 @@ function App() {
           <Route path="/users/all" element={<Users />} />
           <Route path="/categories" element={<Categories />} />
           <Route path="/user/categories" element={<Categories />} />
+          <Route path="/user/purchases" element={<Purchases />} />
 
           <Route path="/categories/add" element={<CategoriesForm />} />
           <Route
