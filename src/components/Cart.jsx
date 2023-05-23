@@ -14,10 +14,11 @@ const Cart = () => {
     axios
       .get(`http://localhost:3001/api/cart/${id}`)
       .then((response) => {
+       // console.log("response.data del get",response.data);
         setCartItems(response.data);
       })
       .catch((err) => console.error(err));
-  }, [id]);
+  }, [id, quantities]);
 
   const removeFromCart = (productId) => {
     axios
@@ -28,23 +29,24 @@ const Cart = () => {
       .catch((err) => console.error(err));
   };
 
-  useEffect(() => {
-    axios
-      .post(`http://localhost:3001/api/cart/add/${id}/${productId}`, {
-        quantity: quantities, // Enviar la cantidad al backend
-      })
-      .then((response) => {
-        setCartItems(response.data);
-      })
-      .catch((err) => console.error(err));
-  }, [quantities]);
+
+
 
   const addToCart = (itemId, number) => {
-    setQuantities((prevQuantities) => ({
-      ...prevQuantities,
-      [itemId]: number,
-    }));
     setProductId(itemId);
+    
+    axios
+    .post(`http://localhost:3001/api/cart/add/${id}/${itemId}`, {
+      quantity: number, // Enviar la cantidad al backend
+    })
+    .then((response) => {
+     // console.log("response.data del post",response.data);
+      setQuantities({...quantities, [itemId]: number})
+      
+    })
+    .catch((err) => console.error(err));
+    
+
   };
 
   const getTotalCompra = () => {
@@ -73,7 +75,7 @@ const Cart = () => {
               />
               <h3>{item.title}</h3>
               <p>
-                Price: ${item.price * (Number(quantities) || item.quantity)}
+                Price: ${item.price * ( item.quantity)}
               </p>
 
               <p>Stock: {item.stock}</p>
