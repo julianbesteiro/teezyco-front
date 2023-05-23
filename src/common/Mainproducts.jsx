@@ -2,22 +2,19 @@ import { useEffect, useState } from "react";
 import "../css/slider.css";
 import Swiper from "swiper";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 const Mainproducts = () => {
   const [products, setProducts] = useState();
 
   useEffect(() => {
-    let arr = [];
-    for (let i = 0; i <= 10; i++) {
-      arr.push({
-        id: i,
-        price: 200 + i,
-        nombre: "aesthethic 200" + i,
-        desc: "remera oversucia aaaa",
-        img: "https://d3ugyf2ht6aenh.cloudfront.net/stores/943/997/products/boy-beige1-2e3a2fe4fc6ce264d016676887628942-1024-1024.webp",
-      });
-    }
-    setProducts(arr);
+    axios
+      .get("http://localhost:3001/api/products/all")
+      .then((products) => {
+        setProducts(products.data);
+        products.splice(0, 12);
+      })
+      .catch((err) => console.error(err));
   }, []);
 
   let mySwiper;
@@ -65,15 +62,10 @@ const Mainproducts = () => {
             products.map((elem, x) => {
               return (
                 <div className="swiper-slide" key={x}>
-                  <img
-                    src={
-                      "https://d3ugyf2ht6aenh.cloudfront.net/stores/943/997/products/boy-beige1-2e3a2fe4fc6ce264d016676887628942-1024-1024.webp"
-                    }
-                    alt="Imagen 3"
-                  />
+                  <img src={elem.image} alt="Imagen 3" height="80%" />
 
                   <div className="titles">
-                    <h3>{elem.nombre}</h3>
+                    <h3>{elem.title}</h3>
                     <h3 className="price">${elem.price}</h3>
                   </div>
                 </div>

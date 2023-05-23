@@ -1,21 +1,29 @@
 import "../css/ProductForm.css";
-import React from "react";
+import React, { useEffect } from "react";
 import axios from "axios";
 import { useState } from "react";
 import { useLocation, useNavigate, useParams } from "react-router";
+import Categories from "./Categories";
 
 const ProductForm = () => {
   const [size, setSize] = useState("");
   const [color, setColor] = useState("");
-  const [category, setCategory] = useState("");
+  const [categoryId, setCategoryId] = useState(0);
   const [stock, setStock] = useState("");
   const [price, setPrice] = useState("");
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [image, setImage] = useState("");
-  const [imgPreview, setImg] = useState("");
+  const [categories, setCategories] = useState("");
   const navigate = useNavigate();
   const { productId } = useParams();
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:3001/api/categories/all")
+      .then((categories) => setCategories(categories.data))
+      .catch((error) => console.log(error));
+  }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -25,7 +33,7 @@ const ProductForm = () => {
         .put(`http://localhost:3001/api/products/mod/${productId}`, {
           size,
           color,
-          category,
+          categoryId,
           stock,
           price,
           title,
@@ -42,7 +50,7 @@ const ProductForm = () => {
         .post("http://localhost:3001/api/products/create", {
           size,
           color,
-          category,
+          categoryId,
           stock,
           price,
           title,
@@ -98,18 +106,28 @@ const ProductForm = () => {
           </div>
           <div class="col mb-3 ml-3 mr-3">
             <label for="model" class="form-label">
-              Modelo
+              Categoria
             </label>
-            <input
-              type="text"
+
+            <select
               class="form-control bg-transparent text-white"
               id="model"
-              placeholder="Ingrese el modelo"
-              value={category}
               onChange={(e) => {
-                setCategory(e.target.value);
+                const categoryFiltrada = categories.filter(
+                  (cat) => cat.title == e.target.value
+                );
+
+                setCategoryId(categoryFiltrada[0].id);
               }}
-            />
+            >
+              {categories
+                ? categories.map((value, index) => (
+                    <option key={index} id={value.id} value={value.title}>
+                      {value.title}
+                    </option>
+                  ))
+                : null}
+            </select>
           </div>
         </div>
         <div className="row ">
