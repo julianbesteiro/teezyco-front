@@ -12,7 +12,6 @@ const Categories = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (categories)
       axios
         .get("http://localhost:3001/api/categories/all")
         .then((categories) => {
@@ -21,15 +20,6 @@ const Categories = () => {
         .catch((err) => console.error(err));
   }, [deleteCategory]);
 
-  useEffect(() => {
-    if (!categories)
-      axios
-        .get("http://localhost:3001/api/categories/all")
-        .then((categories) => {
-          setCategories(categories.data);
-        })
-        .catch((err) => console.error(err));
-  }, []);
 
   const handleEdit = (e, categoryId) => {
     if (categoryId) navigate(`/categories/edit/${categoryId}`);
