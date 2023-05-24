@@ -131,7 +131,7 @@ function NavigationBar() {
                   <Link to="/user" class="dropdown-item" href="#">
                     Perfil
                   </Link>
-                  <Link to="/user/favs" class="dropdown-item" href="#">
+                  <Link to="/favorites" class="dropdown-item" href="#">
                     Favoritos
                   </Link>
                   <button onClick={handleLogout} class="dropdown-item">
