@@ -23,7 +23,7 @@ const CategoriesForm = () => {
           image,
         })
         .then((category) => {
-          console.log("Categoria editada");
+          alert("Categoria editada");
           navigate("/user/categories");
         })
         .catch(() => alert("Se ha producido un error."));
@@ -34,7 +34,7 @@ const CategoriesForm = () => {
           image,
         })
         .then((category) => {
-          console.log("Categoria creada");
+          alert("Categoria creada");
           navigate("/user/categories");
         })
         .catch(() => alert("Se ha producido un error."));
@@ -50,13 +50,13 @@ const CategoriesForm = () => {
       </div>
       <form onSubmit={handleSubmit} className="container">
         <div className="row">
-          <div class="col mb-3 ml-3 mr-3">
-            <label for="model" class="form-label">
+          <div className="col mb-3 ml-3 mr-3">
+            <label for="model" className="form-label">
               Categoria
             </label>
             <input
               type="text"
-              class="form-control bg-transparent text-white"
+              className="form-control bg-transparent text-white"
               id="model"
               placeholder="Ingrese el modelo"
               value={title}
@@ -67,13 +67,13 @@ const CategoriesForm = () => {
           </div>
         </div>
 
-        <div class="mb-3 ml-5 mr-5">
-          <label for="image" class="form-label">
+        <div className="mb-3 ml-5 mr-5">
+          <label for="image" className="form-label">
             Imagen
           </label>
           <input
             type="text"
-            class="form-control bg-transparent text-white "
+            className="form-control bg-transparent text-white "
             id="image"
             value={image}
             onChange={(e) => {
@@ -81,7 +81,7 @@ const CategoriesForm = () => {
             }}
           />
         </div>
-        <button type="submit" class="btn bg-transparent ">
+        <button type="submit" className="btn bg-transparent ">
           Guardar
         </button>
       </form>

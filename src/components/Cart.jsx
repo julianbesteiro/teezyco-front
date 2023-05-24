@@ -9,12 +9,13 @@ const Cart = () => {
   const { id } = useContext(UserContext);
 
   useEffect(() => {
-    axios
-      .get(`http://localhost:3001/api/cart/${id}`)
-      .then((response) => {
-        setCartItems(response.data);
-      })
-      .catch((err) => console.error(err));
+    if (id)
+      axios
+        .get(`http://localhost:3001/api/cart/${id}`)
+        .then((response) => {
+          setCartItems(response.data);
+        })
+        .catch((err) => console.error(err));
   }, [id, quantities, cartItems]);
 
   const removeFromCart = (productId) => {
@@ -50,7 +51,6 @@ const Cart = () => {
         productsPurchase: cartItems,
       })
       .then((purchase) => {
-        console.log(purchase.data);
         alert("Compra completada correctamente");
       })
       .catch((error) => console.log(error));

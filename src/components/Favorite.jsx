@@ -8,45 +8,42 @@ const Favorite = () => {
   const [products, setProducts] = useState([]);
   const [favorites, setFavorites] = useState([]);
   const { id } = useContext(UserContext);
-  
-  useEffect(() => {
-     if(id){
-      
-      axios
-      .get(`http://localhost:3001/api/favorite/${id}`)
-      .then((favoritos) => {
-        setFavorites(favoritos.data[0].products);
-        
-      })
-      .catch((err) => console.error(err));
-     }
-  }, [id ]);
-console.log(favorites);
-useEffect(() => {
-  if (favorites.length > 0) {
-    setProducts([]);
-    
-    const fetchProducts = favorites.map((e) => {
-      return axios.get(`http://localhost:3001/api/products/${e}`)
-        .then((response) => response.data);
-    });
-    
-    Promise.all(fetchProducts)
-      .then((results) => {
-        setProducts(results);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  }
-}, [favorites]);
 
+  useEffect(() => {
+    if (id) {
+      axios
+        .get(`http://localhost:3001/api/favorite/${id}`)
+        .then((favoritos) => {
+          setFavorites(favoritos.data[0].products);
+        })
+        .catch((err) => console.error(err));
+    }
+  }, [id]);
+  useEffect(() => {
+    if (favorites.length > 0) {
+      setProducts([]);
+
+      const fetchProducts = favorites.map((e) => {
+        return axios
+          .get(`http://localhost:3001/api/products/${e}`)
+          .then((response) => response.data);
+      });
+
+      Promise.all(fetchProducts)
+        .then((results) => {
+          setProducts(results);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    }
+  }, [favorites]);
 
   const handleCarrito = (e, productId) => {
     axios
       .post(`http://localhost:3001/api/cart/add/${id}/${productId}`)
       .then(() => {
-        console.log("agregado al carrito");
+        alert("Producto agregado al carrito");
       })
       .catch((err) => console.error(err));
   };
@@ -55,9 +52,9 @@ useEffect(() => {
     axios
       .delete(`http://localhost:3001/api/favorite/remove/${id}/${productId}`)
       .then((favoritos) => {
-        console.log("eliminado de favoritos", favoritos.data.products);
-         
-        setFavorites(favoritos.data.products)
+        alert("Producto eliminado de favoritos");
+
+        setFavorites(favoritos.data.products);
       })
       .catch((err) => console.error(err));
   };
@@ -94,22 +91,22 @@ useEffect(() => {
                         />
                       </Link>
                       <div className=" icons">
-                          <button
-                            className="favs"
-                            onClick={() => {
-                              handleFavorito(product.id);
-                            }}
-                          >
-                            💔{" "}
-                          </button>
-                          <button
-                            className="carrito"
-                            onClick={(e) => {
-                              handleCarrito(e, product.id);
-                            }}
-                          >
-                            🛒
-                          </button>
+                        <button
+                          className="favs"
+                          onClick={() => {
+                            handleFavorito(product.id);
+                          }}
+                        >
+                          💔{" "}
+                        </button>
+                        <button
+                          className="carrito"
+                          onClick={(e) => {
+                            handleCarrito(e, product.id);
+                          }}
+                        >
+                          🛒
+                        </button>
                       </div>
                       <h3>{product.title}</h3>
                       <h3 className="price">

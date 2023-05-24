@@ -12,7 +12,6 @@ const Mainproducts = () => {
       .get("http://localhost:3001/api/products/all")
       .then((products) => {
         setProducts(products.data);
-        products.splice(0, 12);
       })
       .catch((err) => console.error(err));
   }, []);
@@ -61,14 +60,18 @@ const Mainproducts = () => {
           {products &&
             products.map((elem, x) => {
               return (
-                <div className="swiper-slide" key={x}>
+                <Link
+                  to={`/products/individual/${elem.id}`}
+                  className="swiper-slide"
+                  key={x}
+                >
                   <img src={elem.image} alt="Imagen 3" height="80%" />
 
                   <div className="titles">
                     <h3>{elem.title}</h3>
                     <h3 className="price">${elem.price}</h3>
                   </div>
-                </div>
+                </Link>
               );
             })}
         </div>

@@ -62,3 +62,7 @@
 .btn:hover {
   color: #000;
 }
+
+.rowPurchases {
+  border: 2px solid #fff;
+}

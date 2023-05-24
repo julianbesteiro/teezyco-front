@@ -7,7 +7,7 @@ import { UserContext } from "../context/userContext";
 const Grid = () => {
   const [products, setProducts] = useState();
   const [deleteProduct, setDeleteProduct] = useState(false);
-//const [favorites, setFavorites] = useState([]);
+  //const [favorites, setFavorites] = useState([]);
   let { search, category } = useParams();
   const { id } = useContext(UserContext);
   const { pathname } = useLocation();
@@ -52,7 +52,7 @@ const Grid = () => {
       .delete(`http://localhost:3001/api/products/delete/${productId}`)
       .then(() => {
         setDeleteProduct(!deleteProduct);
-        console.log("Producto eliminado");
+        alert("Producto eliminado");
       })
       .catch((err) => console.error(err));
     navigate(`/user/products`);
@@ -62,7 +62,7 @@ const Grid = () => {
     axios
       .post(`http://localhost:3001/api/cart/add/${id}/${productId}`)
       .then(() => {
-        console.log("agregado al carrito");
+        alert("Producto agregado al carrito");
       })
       .catch((err) => console.error(err));
   };
@@ -71,18 +71,11 @@ const Grid = () => {
     axios
       .post(`http://localhost:3001/api/favorite/add/${id}/${productId}`)
       .then((favoritos) => {
-        console.log("agregado a favoritos", favoritos);
+        alert("Producto agregado a favoritos");
       })
       .catch((err) => console.error(err));
   };
 
-//   useEffect(() => {
-// axios
-// .get(`http://localhost:3001/api/favorite/${id}`)
-// .then((fav)=>{
-// setFavorites(fav.data)
-// })
-//   },[]);
   let x = 4;
   if (window.innerWidth <= 1000) x = 1;
 

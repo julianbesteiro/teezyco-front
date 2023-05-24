@@ -42,7 +42,7 @@ const ProductForm = () => {
           image,
         })
         .then(() => {
-          console.log("Producto editado");
+          alert("Producto editado");
           navigate("/");
         })
         .catch(() => alert("Se ha producido un error."));
@@ -59,7 +59,7 @@ const ProductForm = () => {
           image,
         })
         .then(() => {
-          console.log("Producto creado");
+          alert("Producto creado");
           navigate("/");
         })
         .catch(() => alert("Se ha producido un error."));
@@ -97,8 +97,8 @@ const ProductForm = () => {
       </div>
       <form onSubmit={handleSubmit} className="container">
         <div className="row">
-          <div class="col mb-3 ml-3 mr-3">
-            <label for="size" class="form-label">
+          <div className="col mb-3 ml-3 mr-3">
+            <label for="size" className="form-label">
               Tamaño
             </label>
             <input
@@ -112,13 +112,13 @@ const ProductForm = () => {
               }}
             />
           </div>
-          <div class="col mb-3 ml-3 mr-3">
-            <label for="color" class="form-label">
+          <div className="col mb-3 ml-3 mr-3">
+            <label for="color" className="form-label">
               Color
             </label>
             <input
               type="text"
-              class="form-control bg-transparent text-white"
+              className="form-control bg-transparent text-white"
               id="color"
               placeholder="Ingrese el color"
               value={color || product.color}
@@ -127,13 +127,13 @@ const ProductForm = () => {
               }}
             />
           </div>
-          <div class="col mb-3 ml-3 mr-3">
-            <label for="model" class="form-label">
+          <div className="col mb-3 ml-3 mr-3">
+            <label for="model" className="form-label">
               Categoria
             </label>
 
             <select
-              class="form-control bg-transparent text-white"
+              className="form-control bg-transparent text-white"
               id="model"
               onChange={(e) => {
                 const categoryFiltrada = categories.filter(
@@ -154,13 +154,13 @@ const ProductForm = () => {
           </div>
         </div>
         <div className="row ">
-          <div class="col mb-3 ml-3 mr-3">
-            <label for="stock" class="form-label">
+          <div className="col mb-3 ml-3 mr-3">
+            <label for="stock" className="form-label">
               Stock
             </label>
             <input
               type="number"
-              class="form-control bg-transparent text-white"
+              className="form-control bg-transparent text-white"
               id="stock"
               placeholder="Ingrese el stock"
               value={stock || product.stock}
@@ -169,13 +169,13 @@ const ProductForm = () => {
               }}
             />
           </div>
-          <div class="col mb-3 ml-3 mr-3">
-            <label for="price" class="form-label">
+          <div className="col mb-3 ml-3 mr-3">
+            <label for="price" className="form-label">
               Precio
             </label>
             <input
               type="number"
-              class="form-control bg-transparent text-white"
+              className="form-control bg-transparent text-white"
               id="price"
               placeholder="Ingrese el precio"
               value={price || product.price}
@@ -184,13 +184,13 @@ const ProductForm = () => {
               }}
             />
           </div>
-          <div class="col mb-3 ml-3 mr-3">
-            <label for="title" class="form-label">
+          <div className="col mb-3 ml-3 mr-3">
+            <label for="title" className="form-label">
               Título
             </label>
             <input
               type="text"
-              class="form-control bg-transparent text-white"
+              className="form-control bg-transparent text-white"
               id="title"
               placeholder="Ingrese el título"
               value={title || product.title}
@@ -200,12 +200,12 @@ const ProductForm = () => {
             />
           </div>
         </div>
-        <div class="mb-3 ml-5 mr-5 ">
-          <label for="description" class="form-label">
+        <div className="mb-3 ml-5 mr-5 ">
+          <label for="description" className="form-label">
             Descripción
           </label>
           <textarea
-            class="form-control bg-transparent text-white"
+            className="form-control bg-transparent text-white"
             id="description"
             value={description || product.description}
             onChange={(e) => {
@@ -213,13 +213,13 @@ const ProductForm = () => {
             }}
           ></textarea>
         </div>
-        <div class="mb-3 ml-5 mr-5">
-          <label for="image" class="form-label">
+        <div className="mb-3 ml-5 mr-5">
+          <label for="image" className="form-label">
             Imagen
           </label>
           <input
             type="text"
-            class="form-control bg-transparent text-white "
+            className="form-control bg-transparent text-white "
             id="image"
             value={image || product.image}
             onChange={(e) => {
@@ -227,7 +227,7 @@ const ProductForm = () => {
             }}
           />
         </div>
-        <button type="submit" class="btn bg-transparent ">
+        <button type="submit" className="btn bg-transparent ">
           Guardar
         </button>
       </form>

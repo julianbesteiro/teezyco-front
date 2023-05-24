@@ -11,7 +11,6 @@ function NavigationBar() {
   const { name, logOut, admin } = useContext(UserContext);
   const navigate = useNavigate();
 
-  console.log("ADMIN", admin);
   const handleLogout = (e) => {
     e.preventDefault();
 
@@ -52,21 +51,14 @@ function NavigationBar() {
       <div className="collapse navbar-collapse" id="navbarNav">
         <ul className="navbar-nav mr-auto">
           <li className="nav-item">
-            <Link
-              className="nav-link text-white nav-link-hover"
-              to="/categories"
-            >
+            <Link className="nav-link  color" to="/categories">
               Categorias
             </Link>
           </li>
-          <li className="nav-item">
-            <a className="nav-link color" href="#">
-              Ofertas
-            </a>
-          </li>
+
           <li className="nav-item">
             <Link className="nav-link  color" to="/products/trending">
-              Trending
+              Productos
             </Link>
           </li>
         </ul>
@@ -87,7 +79,7 @@ function NavigationBar() {
             <>
               <div className="btn   nav-link-hover">
                 <a
-                  class="nav-link dropdown-toggle text-white"
+                  className="nav-link dropdown-toggle text-white"
                   href="#"
                   id="userMenu"
                   role="button"
@@ -98,42 +90,54 @@ function NavigationBar() {
                   {name}
                 </a>
                 <div
-                  class="dropdown-menu dropdown-menu-right"
+                  className="dropdown-menu dropdown-menu-right"
                   aria-labelledby="userMenu"
                 >
                   {admin ? (
                     <>
-                      <Link to="/user/products" class="dropdown-item" href="#">
+                      <Link
+                        to="/user/products"
+                        className="dropdown-item"
+                        href="#"
+                      >
                         Productos
                       </Link>
-                      <Link to="/products/add" class="dropdown-item" href="#">
+                      <Link
+                        to="/products/add"
+                        className="dropdown-item"
+                        href="#"
+                      >
                         Agregar Productos
                       </Link>
                       <Link
                         to="/user/categories"
-                        class="dropdown-item"
+                        className="dropdown-item"
                         href="#"
                       >
                         Categorias
                       </Link>
-                      <Link to="/categories/add" class="dropdown-item" href="#">
+                      <Link
+                        to="/categories/add"
+                        className="dropdown-item"
+                        href="#"
+                      >
                         Agregar Categorias
                       </Link>
 
-                      <Link to="/users/all" class="dropdown-item" href="#">
+                      <Link to="/users/all" className="dropdown-item" href="#">
                         Usuarios
                       </Link>
                     </>
                   ) : (
                     ""
                   )}
-                  <Link to="/user/purchases" class="dropdown-item" href="#">
+                  <Link to="/user/purchases" className="dropdown-item" href="#">
                     Historial de compras
                   </Link>
-                  <Link to="/favorites" class="dropdown-item" href="#">
+                  <Link to="/favorites" className="dropdown-item" href="#">
                     Favoritos
                   </Link>
-                  <button onClick={handleLogout} class="dropdown-item">
+                  <button onClick={handleLogout} className="dropdown-item">
                     Cerrar sesion
                   </button>
                 </div>
