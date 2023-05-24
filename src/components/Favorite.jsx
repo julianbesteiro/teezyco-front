@@ -4,59 +4,43 @@ import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import { UserContext } from "../context/userContext";
 
-const Grid = () => {
-  const [products, setProducts] = useState();
-  const [deleteProduct, setDeleteProduct] = useState(false);
-//const [favorites, setFavorites] = useState([]);
-  let { search, category } = useParams();
+const Favorite = () => {
+  const [products, setProducts] = useState([]);
+  const [favorites, setFavorites] = useState([]);
   const { id } = useContext(UserContext);
-  const { pathname } = useLocation();
-
-  const navigate = useNavigate();
-
+  
   useEffect(() => {
-    if (search && search != "undefined")
+     if(id){
+      
       axios
-        .get(`http://localhost:3001/api/products/search/${search}`)
-        .then((products) => {
-          setProducts(products.data);
-        })
-        .catch((err) => console.error(err));
-  }, [search]);
-
-  useEffect(() => {
-    if (pathname.includes("categories"))
-      axios
-        .get(`http://localhost:3001/api/products/search/${category}`)
-        .then((products) => {
-          setProducts(products.data);
-        })
-        .catch((err) => console.error(err));
-  }, [category]);
-
-  useEffect(() => {
-    if (!pathname.includes("favorites") && !search && !category)
-      axios
-        .get("http://localhost:3001/api/products/all")
-        .then((products) => {
-          setProducts(products.data);
-        })
-        .catch((err) => console.error(err));
-  }, [deleteProduct]);
-
-  const handleEdit = (e, productId) => {
-    if (productId) navigate(`/products/edit/${productId}`);
-  };
-  const handleDelete = (e, productId) => {
-    axios
-      .delete(`http://localhost:3001/api/products/delete/${productId}`)
-      .then(() => {
-        setDeleteProduct(!deleteProduct);
-        console.log("Producto eliminado");
+      .get(`http://localhost:3001/api/favorite/${id}`)
+      .then((favoritos) => {
+        setFavorites(favoritos.data[0].products);
+        
       })
       .catch((err) => console.error(err));
-    navigate(`/user/products`);
-  };
+     }
+  }, [id ]);
+console.log(favorites);
+useEffect(() => {
+  if (favorites.length > 0) {
+    setProducts([]);
+    
+    const fetchProducts = favorites.map((e) => {
+      return axios.get(`http://localhost:3001/api/products/${e}`)
+        .then((response) => response.data);
+    });
+    
+    Promise.all(fetchProducts)
+      .then((results) => {
+        setProducts(results);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }
+}, [favorites]);
+
 
   const handleCarrito = (e, productId) => {
     axios
@@ -69,20 +53,15 @@ const Grid = () => {
 
   const handleFavorito = (productId) => {
     axios
-      .post(`http://localhost:3001/api/favorite/add/${id}/${productId}`)
+      .delete(`http://localhost:3001/api/favorite/remove/${id}/${productId}`)
       .then((favoritos) => {
-        console.log("agregado a favoritos", favoritos);
+        console.log("eliminado de favoritos", favoritos.data.products);
+         
+        setFavorites(favoritos.data.products)
       })
       .catch((err) => console.error(err));
   };
 
-//   useEffect(() => {
-// axios
-// .get(`http://localhost:3001/api/favorite/${id}`)
-// .then((fav)=>{
-// setFavorites(fav.data)
-// })
-//   },[]);
   let x = 4;
   if (window.innerWidth <= 1000) x = 1;
 
@@ -115,35 +94,14 @@ const Grid = () => {
                         />
                       </Link>
                       <div className=" icons">
-                        {pathname === "/user/products" ? (
-                          <button
-                            className="favs"
-                            onClick={(e) => {
-                              handleEdit(e, product.id);
-                            }}
-                          >
-                            ✎
-                          </button>
-                        ) : (
                           <button
                             className="favs"
                             onClick={() => {
                               handleFavorito(product.id);
                             }}
                           >
-                            ♡{" "}
+                            💔{" "}
                           </button>
-                        )}
-                        {pathname === "/user/products" ? (
-                          <button
-                            className="carrito"
-                            onClick={(e) => {
-                              handleDelete(e, product.id);
-                            }}
-                          >
-                            🗑️
-                          </button>
-                        ) : (
                           <button
                             className="carrito"
                             onClick={(e) => {
@@ -152,7 +110,6 @@ const Grid = () => {
                           >
                             🛒
                           </button>
-                        )}
                       </div>
                       <h3>{product.title}</h3>
                       <h3 className="price">
@@ -172,4 +129,4 @@ const Grid = () => {
   );
 };
 
-export default Grid;
+export default Favorite;

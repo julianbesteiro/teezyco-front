@@ -17,10 +17,11 @@ import Purchases from "./components/Purchases";
 
 import Categories from "./components/Categories";
 import CategoriesForm from "./components/CategoriesForm";
+import Favorite from "./components/Favorite";
 
 function App() {
   const { logUser, id } = useContext(UserContext);
-  console.log("app id ", id);
+ 
   useEffect(() => {
     axios
       .get("http://localhost:3001/api/users/me", { withCredentials: true })
@@ -51,7 +52,7 @@ function App() {
           <Route path="/categories" element={<Categories />} />
           <Route path="/user/categories" element={<Categories />} />
           <Route path="/user/purchases" element={<Purchases />} />
-
+          <Route path="/favorites" element={<Favorite/>}/>
           <Route path="/categories/add" element={<CategoriesForm />} />
           <Route
             path="/categories/edit/:categoryId"
