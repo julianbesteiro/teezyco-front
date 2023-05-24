@@ -10,7 +10,6 @@ const Purchases = () => {
   const { id } = useContext(UserContext);
 
   useEffect(() => {
-    console.log("ID", id);
     axios
       .get(`http://localhost:3001/api/purchases/${id}`)
       .then((purchases) => {
@@ -19,35 +18,39 @@ const Purchases = () => {
       .catch((err) => console.error(err));
   }, []);
 
-  console.log("pur state", purchases);
-
   return (
     <>
+      <h2>Compras:</h2>
       {purchases &&
         purchases.length > 0 &&
         purchases.map((item, index) => {
           return (
-            <div className="row" key={index}>
-              <h6>Fecha de compra: </h6>
+            <div className="row rowPurchases" key={index}>
+              <div className="col">
+                <h6>Fecha de compra: </h6>
 
-              <p>{item.createdAt.slice(0, 10)}</p>
+                <p>{item.createdAt.slice(0, 10)}</p>
+              </div>
+
               {item.products.map((item, index) => {
                 return (
                   <>
-                    <h3>-{item.title}</h3>
-                    <p>-{item.quantity}</p>
-                    <p>-{item.price}</p>
+                    <div className="col">
+                      <h3>{item.title}</h3>
+
+                      <p>Unidades: {item.quantity}</p>
+                      <p>Precio unitario: ${item.price}</p>
+                    </div>
                   </>
                 );
               })}
-              <h6>Total de compra: </h6>
-
-              <p>
+              <h6>
+                Total de compra: $
                 {item.products.reduce(
                   (acc, item) => acc + item.price * item.quantity,
                   0
                 )}
-              </p>
+              </h6>
             </div>
           );
         })}

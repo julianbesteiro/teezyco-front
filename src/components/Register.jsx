@@ -21,7 +21,7 @@ const Register = () => {
         password,
       })
       .then((res) => {
-        console.log("Usuario creado");
+        alert("Usuario creado");
         navigate("/login");
       })
       .catch(() => alert("Se ha producido un error."));

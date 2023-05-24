@@ -30,7 +30,7 @@ let Individual = () => {
         quantity,
       })
       .then(() => {
-        console.log("agregado al carrito");
+        alert("Producto agregado al carrito");
       })
       .catch((err) => console.error(err));
   };
@@ -64,10 +64,8 @@ let Individual = () => {
         <p>6 cuotas sin interes de ${Math.ceil(product.price / 6)}</p>
         <p>{product.description}</p>
         <div className="selectCont">
-          <p>color: </p>
-          <p value="">{product.color}</p>
-          <p>talle: </p>
-          <p value="">{product.size}</p>
+          <p>color: {product.color}</p>
+          <p>talle: {product.size}</p>
         </div>
         <p>cantidad: </p>
         <input
@@ -78,7 +76,7 @@ let Individual = () => {
           value={quantity}
           onChange={handleChange}
         />
-        <button>agregar al carrito</button>
+        <button className="btncarrito">agregar al carrito</button>
         <h3>Cambio y/o devoluciones: </h3>
         <p>En nuestro Menú encontraras nuestra politica de cambio</p>
         <h3>Medios de pago:</h3>

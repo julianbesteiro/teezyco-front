@@ -12,14 +12,13 @@ const Categories = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-      axios
-        .get("http://localhost:3001/api/categories/all")
-        .then((categories) => {
-          setCategories(categories.data);
-        })
-        .catch((err) => console.error(err));
+    axios
+      .get("http://localhost:3001/api/categories/all")
+      .then((categories) => {
+        setCategories(categories.data);
+      })
+      .catch((err) => console.error(err));
   }, [deleteCategory]);
-
 
   const handleEdit = (e, categoryId) => {
     if (categoryId) navigate(`/categories/edit/${categoryId}`);
@@ -30,7 +29,7 @@ const Categories = () => {
       .delete(`http://localhost:3001/api/categories/delete/${categoryId}`)
       .then(() => {
         setDeleteCategory(!deleteCategory);
-        console.log("Categoria eliminada");
+        alert("Categoria eliminada");
       })
       .catch((err) => console.error(err));
     navigate(`/user/categories`);
@@ -52,14 +51,18 @@ const Categories = () => {
                 : remainingItems;
 
             return (
-              <div className="row" key={index}>
+              <div className="row" id="center" key={index}>
                 {itemsToShow.map((category, subIndex) => (
-                  <div className="col" key={`${index}-${subIndex}`}>
-                    <div className="elem">
-                      <h3>{category.title}</h3>
+                  <Link
+                    to={`/categories/${category.id}`}
+                    key={`${index}-${subIndex}`}
+                  >
+                    <div className="col">
+                      <div className="elem">
+                        <h3>{category.title}</h3>
 
-                      <Link className="col" to={`/categories/${category.id}`}>
                         <img
+                          className="border-examples"
                           id="img"
                           src={
                             category.image
@@ -68,36 +71,36 @@ const Categories = () => {
                           }
                           alt=""
                         />
-                      </Link>
 
-                      <div className=" icons">
-                        {pathname === "/user/categories" ? (
-                          <button
-                            className="favs"
-                            onClick={(e) => {
-                              handleEdit(e, category.id);
-                            }}
-                          >
-                            ✎
-                          </button>
-                        ) : (
-                          ""
-                        )}
-                        {pathname === "/user/categories" ? (
-                          <button
-                            className="carrito"
-                            onClick={(e) => {
-                              handleDelete(e, category.id);
-                            }}
-                          >
-                            🗑️
-                          </button>
-                        ) : (
-                          ""
-                        )}
+                        <div className=" icons">
+                          {pathname === "/user/categories" ? (
+                            <button
+                              className="favs"
+                              onClick={(e) => {
+                                handleEdit(e, category.id);
+                              }}
+                            >
+                              ✎
+                            </button>
+                          ) : (
+                            ""
+                          )}
+                          {pathname === "/user/categories" ? (
+                            <button
+                              className="carrito"
+                              onClick={(e) => {
+                                handleDelete(e, category.id);
+                              }}
+                            >
+                              🗑️
+                            </button>
+                          ) : (
+                            ""
+                          )}
+                        </div>
                       </div>
                     </div>
-                  </div>
+                  </Link>
                 ))}
               </div>
             );
