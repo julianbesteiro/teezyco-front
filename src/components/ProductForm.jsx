@@ -15,6 +15,7 @@ const ProductForm = () => {
   const [description, setDescription] = useState("");
   const [image, setImage] = useState("");
   const [categories, setCategories] = useState("");
+  const [product, setProduct] = useState("");
   const navigate = useNavigate();
   const { productId } = useParams();
 
@@ -40,7 +41,7 @@ const ProductForm = () => {
           description,
           image,
         })
-        .then((product) => {
+        .then(() => {
           console.log("Producto editado");
           navigate("/");
         })
@@ -57,7 +58,7 @@ const ProductForm = () => {
           description,
           image,
         })
-        .then((product) => {
+        .then(() => {
           console.log("Producto creado");
           navigate("/");
         })
@@ -65,11 +66,33 @@ const ProductForm = () => {
     }
   };
 
+  useEffect(() => {
+    if (productId)
+      axios
+        .get(`http://localhost:3001/api/products/${productId}`)
+        .then((prod) => setProduct(prod.data))
+        .then(() => {
+          setSize(product.size);
+          setColor(product.color);
+          setStock(product.stock);
+          setPrice(product.price);
+          setTitle(product.title);
+          setDescription(product.description);
+          setImage(product.image);
+        })
+        .catch((error) => console.log(error));
+  }, [productId]);
+
   return (
     <div className="formContainer">
       <div className="row">
         <div className="cont">
-          <img src={image} alt="" id="imgPreview" className="col" />
+          <img
+            src={image || product.image}
+            alt=""
+            id="imgPreview"
+            className="col"
+          />
         </div>
       </div>
       <form onSubmit={handleSubmit} className="container">
@@ -83,7 +106,7 @@ const ProductForm = () => {
               className="form-control bg-transparent text-white"
               id="size"
               placeholder="Ingrese el tamaño"
-              value={size}
+              value={size || product.size}
               onChange={(e) => {
                 setSize(e.target.value);
               }}
@@ -98,7 +121,7 @@ const ProductForm = () => {
               class="form-control bg-transparent text-white"
               id="color"
               placeholder="Ingrese el color"
-              value={color}
+              value={color || product.color}
               onChange={(e) => {
                 setColor(e.target.value);
               }}
@@ -140,7 +163,7 @@ const ProductForm = () => {
               class="form-control bg-transparent text-white"
               id="stock"
               placeholder="Ingrese el stock"
-              value={stock}
+              value={stock || product.stock}
               onChange={(e) => {
                 setStock(e.target.value);
               }}
@@ -155,7 +178,7 @@ const ProductForm = () => {
               class="form-control bg-transparent text-white"
               id="price"
               placeholder="Ingrese el precio"
-              value={price}
+              value={price || product.price}
               onChange={(e) => {
                 setPrice(e.target.value);
               }}
@@ -170,7 +193,7 @@ const ProductForm = () => {
               class="form-control bg-transparent text-white"
               id="title"
               placeholder="Ingrese el título"
-              value={title}
+              value={title || product.title}
               onChange={(e) => {
                 setTitle(e.target.value);
               }}
@@ -184,7 +207,7 @@ const ProductForm = () => {
           <textarea
             class="form-control bg-transparent text-white"
             id="description"
-            value={description}
+            value={description || product.description}
             onChange={(e) => {
               setDescription(e.target.value);
             }}
@@ -198,7 +221,7 @@ const ProductForm = () => {
             type="text"
             class="form-control bg-transparent text-white "
             id="image"
-            value={image}
+            value={image || product.image}
             onChange={(e) => {
               setImage(e.target.value);
             }}

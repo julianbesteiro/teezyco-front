@@ -11,6 +11,7 @@ function NavigationBar() {
   const { name, logOut, admin } = useContext(UserContext);
   const navigate = useNavigate();
 
+  console.log("ADMIN", admin);
   const handleLogout = (e) => {
     e.preventDefault();
 
@@ -118,18 +119,16 @@ function NavigationBar() {
                       <Link to="/categories/add" class="dropdown-item" href="#">
                         Agregar Categorias
                       </Link>
-                   
-                    <Link to="/users/all" class="dropdown-item" href="#">
-                    Usuarios
-                  </Link></>
+
+                      <Link to="/users/all" class="dropdown-item" href="#">
+                        Usuarios
+                      </Link>
+                    </>
                   ) : (
                     ""
                   )}
                   <Link to="/user/purchases" class="dropdown-item" href="#">
                     Historial de compras
-                  </Link>
-                  <Link to="/user" class="dropdown-item" href="#">
-                    Perfil
                   </Link>
                   <Link to="/favorites" class="dropdown-item" href="#">
                     Favoritos
