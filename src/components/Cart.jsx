@@ -27,19 +27,14 @@ const Cart = () => {
   };
 
   const addToCart = (itemId, number) => {
-
-
     axios
-    .post(`http://localhost:3001/api/cart/add/${id}/${itemId}`, {
-      quantity: number, // Enviar la cantidad al backend
-    })
-    .then(() => {
-      setQuantities({...quantities, [itemId]: number})
-      
-    })
-    .catch((err) => console.error(err));
-    
-
+      .post(`http://localhost:3001/api/cart/add/${id}/${itemId}`, {
+        quantity: number, // Enviar la cantidad al backend
+      })
+      .then(() => {
+        setQuantities({ ...quantities, [itemId]: number });
+      })
+      .catch((err) => console.error(err));
   };
 
   const getTotalCompra = () => {
@@ -54,7 +49,10 @@ const Cart = () => {
       .post(`http://localhost:3001/api/purchases/confirm/${id}`, {
         productsPurchase: cartItems,
       })
-      .then((purchase) => console.log(purchase.data))
+      .then((purchase) => {
+        console.log(purchase.data);
+        alert("Compra completada correctamente");
+      })
       .catch((error) => console.log(error));
   };
 
