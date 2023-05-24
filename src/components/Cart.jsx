@@ -14,11 +14,11 @@ const Cart = () => {
     axios
       .get(`http://localhost:3001/api/cart/${id}`)
       .then((response) => {
-       // console.log("response.data del get",response.data);
+        // console.log("response.data del get",response.data);
         setCartItems(response.data);
       })
       .catch((err) => console.error(err));
-  }, [id, quantities]);
+  }, [id, quantities, cartItems]);
 
   const removeFromCart = (productId) => {
     axios
@@ -29,24 +29,18 @@ const Cart = () => {
       .catch((err) => console.error(err));
   };
 
-
-
-
   const addToCart = (itemId, number) => {
     setProductId(itemId);
-    
-    axios
-    .post(`http://localhost:3001/api/cart/add/${id}/${itemId}`, {
-      quantity: number, // Enviar la cantidad al backend
-    })
-    .then((response) => {
-     // console.log("response.data del post",response.data);
-      setQuantities({...quantities, [itemId]: number})
-      
-    })
-    .catch((err) => console.error(err));
-    
 
+    axios
+      .post(`http://localhost:3001/api/cart/add/${id}/${itemId}`, {
+        quantity: number, // Enviar la cantidad al backend
+      })
+      .then((response) => {
+        // console.log("response.data del post",response.data);
+        setQuantities({ ...quantities, [itemId]: number });
+      })
+      .catch((err) => console.error(err));
   };
 
   const getTotalCompra = () => {
@@ -54,6 +48,15 @@ const Cart = () => {
       const itemQuantity = parseInt(quantities[item.id]) || 1; // Convertir a número entero o usar 1 por defecto
       return total + item.price * itemQuantity;
     }, 0);
+  };
+
+  const handleClick = () => {
+    axios
+      .post(`http://localhost:3001/api/purchases/confirm/${id}`, {
+        productsPurchase: cartItems,
+      })
+      .then((purchase) => console.log(purchase.data))
+      .catch((error) => console.log(error));
   };
 
   return (
@@ -74,9 +77,7 @@ const Cart = () => {
                 alt=""
               />
               <h3>{item.title}</h3>
-              <p>
-                Price: ${item.price * ( item.quantity)}
-              </p>
+              <p>Price: ${item.price * item.quantity}</p>
 
               <p>Stock: {item.stock}</p>
               <input
@@ -96,7 +97,7 @@ const Cart = () => {
       )}
       <div>
         <h2>Total: ${getTotalCompra()}</h2>
-        <button>Comprar</button>
+        <button onClick={handleClick}>Comprar</button>
       </div>
     </div>
   );
