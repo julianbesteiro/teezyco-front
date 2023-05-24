@@ -62,7 +62,7 @@ let Individual = () => {
         <h2>{product.title}</h2>
         <h3>precio: ${product.price}</h3>
         <p>6 cuotas sin interes de ${Math.ceil(product.price / 6)}</p>
-        <p>ver mas detalles</p>
+        <p>{product.description}</p>
         <div className="selectCont">
           <p>color: </p>
           <p value="">{product.color}</p>
