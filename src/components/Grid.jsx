@@ -59,21 +59,25 @@ const Grid = () => {
   };
 
   const handleCarrito = (e, productId) => {
-    axios
+    if(!id){ alert("debes estar logueado para usar esta funcion")}
+    else{axios
       .post(`http://localhost:3001/api/cart/add/${id}/${productId}`)
       .then(() => {
         alert("Producto agregado al carrito");
       })
-      .catch((err) => console.error(err));
+      .catch((err) => console.error(err));}
+    
   };
 
   const handleFavorito = (productId) => {
-    axios
+    if(!id){ alert("debes estar logueado para usar esta funcion")}
+    else{axios
       .post(`http://localhost:3001/api/favorite/add/${id}/${productId}`)
       .then((favoritos) => {
         alert("Producto agregado a favoritos");
       })
-      .catch((err) => console.error(err));
+      .catch((err) => console.error(err));}
+    
   };
 
   let x = 4;

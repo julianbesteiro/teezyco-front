@@ -62,9 +62,9 @@ const Cart = () => {
       {cartItems.length === 0 ? (
         <p>No hay productos en el carrito.</p>
       ) : (
-        <ul>
+        <ul ><div className="row">
           {cartItems.map((item) => (
-            <div key={item.id}>
+            <div className="col" key={item.id}>
               <img
                 src={
                   item.image
@@ -90,7 +90,7 @@ const Cart = () => {
               <button onClick={() => removeFromCart(item.id)}>Eliminar</button>
             </div>
           ))}
-        </ul>
+        </div></ul>
       )}
       <div>
         <h2>Total: ${getTotalCompra()}</h2>

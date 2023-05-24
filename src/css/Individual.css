@@ -8,9 +8,7 @@
   display: flex;
   flex-grow: 2;
   justify-content: center;
-  border-right: 2px solid #fff;
-  border-bottom: 2px solid #fff;
-  height: 91vh;
+ height: 91vh;
 }
 
 @media (max-width: 1000px) {
@@ -24,7 +22,6 @@
 
 .indForm {
   height: 91vh;
-  border-bottom: 2px solid #fff;
   display: flex;
   flex-direction: column;
   flex-grow: 1;

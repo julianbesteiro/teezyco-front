@@ -102,6 +102,7 @@ const ProductForm = () => {
               Tamaño
             </label>
             <input
+              required
               type="text"
               className="form-control bg-transparent text-white"
               id="size"
@@ -117,6 +118,7 @@ const ProductForm = () => {
               Color
             </label>
             <input
+              required
               type="text"
               className="form-control bg-transparent text-white"
               id="color"
@@ -134,6 +136,7 @@ const ProductForm = () => {
 
             <select
               className="form-control bg-transparent text-white"
+              required
               id="model"
               onChange={(e) => {
                 const categoryFiltrada = categories.filter(
@@ -159,6 +162,7 @@ const ProductForm = () => {
               Stock
             </label>
             <input
+              required
               type="number"
               className="form-control bg-transparent text-white"
               id="stock"
@@ -174,6 +178,7 @@ const ProductForm = () => {
               Precio
             </label>
             <input
+              required
               type="number"
               className="form-control bg-transparent text-white"
               id="price"
@@ -189,6 +194,7 @@ const ProductForm = () => {
               Título
             </label>
             <input
+              required
               type="text"
               className="form-control bg-transparent text-white"
               id="title"
@@ -205,6 +211,7 @@ const ProductForm = () => {
             Descripción
           </label>
           <textarea
+            required
             className="form-control bg-transparent text-white"
             id="description"
             value={description || product.description}
@@ -218,6 +225,7 @@ const ProductForm = () => {
             Imagen
           </label>
           <input
+            required
             type="text"
             className="form-control bg-transparent text-white "
             id="image"

@@ -21,7 +21,7 @@ const Register = () => {
         password,
       })
       .then((res) => {
-        alert("Usuario creado");
+        console.log("Usuario creado");
         navigate("/login");
       })
       .catch(() => alert("Se ha producido un error."));
@@ -41,12 +41,14 @@ const Register = () => {
             className="form-control bg-transparent text-white"
             id="nombre"
             placeholder="Ingrese su nombre"
+            required
           />
         </div>
 
         <div className="mb-3">
           <label className="form-label">lastName</label>
           <input
+            required
             value={lastName}
             onChange={(e) => {
               setLastName(e.target.value);
@@ -61,6 +63,7 @@ const Register = () => {
         <div className="mb-3">
           <label className="form-label">Correo electrónico</label>
           <input
+            required
             value={email}
             onChange={(e) => {
               setEmail(e.target.value);
@@ -87,6 +90,7 @@ const Register = () => {
         <div className="mb-3">
           <label className="form-label">Confirmar Contraseña</label>
           <input
+            required
             type="password"
             className="form-control bg-transparent text-white"
             id="password"
