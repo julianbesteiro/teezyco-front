@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import "../css/Grid.css";
+import "../css/Cart.css";
 import axios from "axios";
 import { UserContext } from "../context/userContext";
 
@@ -59,13 +59,15 @@ const Cart = () => {
   return (
     <div>
       <h2>Carrito de Compras</h2>
+      <div  className=" container1 ">
       {cartItems.length === 0 ? (
         <p>No hay productos en el carrito.</p>
       ) : (
-        <ul ><div className="row">
+        <div className=" row1 container2">
           {cartItems.map((item) => (
-            <div className="col" key={item.id}>
+            <div className=" container3" key={item.id}>
               <img
+              className="imgCart"
                 src={
                   item.image
                     ? item.image
@@ -73,11 +75,12 @@ const Cart = () => {
                 }
                 alt=""
               />
-              <h3>{item.title}</h3>
-              <p>Price: ${item.price * item.quantity}</p>
+              <div className="title"><h3>{item.title}</h3></div>
+              
+             
 
-              <p>Stock: {item.stock}</p>
-              <input
+             
+              <div className="stock"> <input
                 type="number"
                 min="1"
                 max={item.stock}
@@ -85,17 +88,19 @@ const Cart = () => {
                 onChange={(e) => {
                   addToCart(item.id, e.target.value);
                 }}
-              />
-              <br></br>
-              <button onClick={() => removeFromCart(item.id)}>Eliminar</button>
+              /><p >{item.stock} disponibles</p></div>
+             
+             <div className="price"> <p>Price: ${item.price * item.quantity}</p>
+             <button onClick={() => removeFromCart(item.id)}>Eliminar</button></div>
             </div>
           ))}
-        </div></ul>
+        </div>
       )}
-      <div>
+      <div className=" container4">
         <h2>Total: ${getTotalCompra()}</h2>
         <button onClick={handleClick}>Comprar</button>
       </div>
+    </div>
     </div>
   );
 };

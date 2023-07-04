@@ -10,7 +10,6 @@
   box-shadow: none;
   border: none;
 }
-
 .elem {
   transition: 0.3s;
   display: flex;
@@ -55,6 +54,7 @@
 #img {
   height: 60vh;
   width: 100%;
+  
 }
 .btn {
   color: #fff;
