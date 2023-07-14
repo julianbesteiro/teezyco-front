@@ -1,0 +1,61 @@
+.indCont {
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.imgCont {
+  display: flex;
+  flex-grow: 2;
+  justify-content: center;
+ height: 91vh;
+}
+
+@media (max-width: 1000px) {
+  .indCont {
+    flex-direction: column;
+  }
+}
+.individual {
+  height: 100%;
+}
+
+.indForm {
+  height: 91vh;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+input,
+select,
+button {
+  border: 2px solid #fff;
+  outline: none;
+  background: none;
+  color: #fff;
+}
+option,
+button {
+  background: #000;
+}
+
+#talleSelect {
+  text-align: center;
+}
+
+.indForm * {
+  width: 100%;
+  text-align: start;
+}
+
+.btncarrito {
+  margin: 15px 0px;
+  background-color: #fff;
+  color: #000;
+}
+
+.btncarrito:hover {
+  color: #fff;
+  background-color: #000;
+}
