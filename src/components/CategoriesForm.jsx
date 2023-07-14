@@ -23,7 +23,7 @@ const CategoriesForm = () => {
           image,
         })
         .then((category) => {
-          alert("Categoria editada");
+          console.log("Categoria editada");
           navigate("/user/categories");
         })
         .catch(() => alert("Se ha producido un error."));
@@ -34,7 +34,7 @@ const CategoriesForm = () => {
           image,
         })
         .then((category) => {
-          alert("Categoria creada");
+          console.log("Categoria creada");
           navigate("/user/categories");
         })
         .catch(() => alert("Se ha producido un error."));
@@ -50,13 +50,14 @@ const CategoriesForm = () => {
       </div>
       <form onSubmit={handleSubmit} className="container">
         <div className="row">
-          <div className="col mb-3 ml-3 mr-3">
-            <label for="model" className="form-label">
+          <div class="col mb-3 ml-3 mr-3">
+            <label for="model" class="form-label">
               Categoria
             </label>
             <input
+              required
               type="text"
-              className="form-control bg-transparent text-white"
+              class="form-control bg-transparent text-white"
               id="model"
               placeholder="Ingrese el modelo"
               value={title}
@@ -67,13 +68,14 @@ const CategoriesForm = () => {
           </div>
         </div>
 
-        <div className="mb-3 ml-5 mr-5">
-          <label for="image" className="form-label">
+        <div class="mb-3 ml-5 mr-5">
+          <label for="image" class="form-label">
             Imagen
           </label>
           <input
+            required
             type="text"
-            className="form-control bg-transparent text-white "
+            class="form-control bg-transparent text-white "
             id="image"
             value={image}
             onChange={(e) => {
@@ -81,7 +83,7 @@ const CategoriesForm = () => {
             }}
           />
         </div>
-        <button type="submit" className="btn bg-transparent ">
+        <button type="submit" class="btn bg-transparent ">
           Guardar
         </button>
       </form>

@@ -15,7 +15,9 @@ const Categories = () => {
     axios
       .get("http://localhost:3001/api/categories/all")
       .then((categories) => {
-        setCategories(categories.data);
+        if (!pathname.includes("categ")) {
+          setCategories(categories.data.splice(0, 3));
+        } else setCategories(categories.data);
       })
       .catch((err) => console.error(err));
   }, [deleteCategory]);
