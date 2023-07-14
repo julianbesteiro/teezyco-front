@@ -76,12 +76,26 @@ const ProductForm = () => {
           setColor(product.color);
           setStock(product.stock);
           setPrice(product.price);
-          setTitle(product.title);
+          setTitle(product.title.toLowerCase());
           setDescription(product.description);
           setImage(product.image);
         })
         .catch((error) => console.log(error));
   }, [productId]);
+
+  function capitalizeFirstLetterOfEachWord(str) {
+    if (str)
+      return str
+        .split(" ") // Split the string into an array of words
+        .map(
+          (word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()
+        ) // Capitalize the first letter and make the remaining letters lowercase for each word
+        .join(" ");
+    // Join the words back into a string
+    else {
+      return;
+    }
+  }
 
   return (
     <div className="formContainer">
@@ -107,7 +121,6 @@ const ProductForm = () => {
               className="form-control bg-transparent text-white"
               id="size"
               placeholder="Ingrese el tamaño"
-              value={size || product.size}
               onChange={(e) => {
                 setSize(e.target.value);
               }}
@@ -199,9 +212,12 @@ const ProductForm = () => {
               className="form-control bg-transparent text-white"
               id="title"
               placeholder="Ingrese el título"
-              value={title || product.title}
+              value={
+                capitalizeFirstLetterOfEachWord(title) ||
+                capitalizeFirstLetterOfEachWord(product.title)
+              }
               onChange={(e) => {
-                setTitle(e.target.value);
+                setTitle(e.target.value.toLowerCase());
               }}
             />
           </div>

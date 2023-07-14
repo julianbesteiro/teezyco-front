@@ -39,6 +39,30 @@ let Individual = () => {
     setQuantity(e.target.value);
   };
 
+  function capitalizeFirstLetterOfEachWord(str) {
+    if (str)
+      return str
+        .split(" ") // Split the string into an array of words
+        .map(
+          (word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()
+        ) // Capitalize the first letter and make the remaining letters lowercase for each word
+        .join(" ");
+    // Join the words back into a string
+    else {
+      return;
+    }
+  }
+
+  const handleFavorito = (productId) => {
+    console.log("fr", productId);
+    axios
+      .post(`http://localhost:3001/api/favorite/add/${id}/${productId}`)
+      .then((favoritos) => {
+        alert("Producto agregado a favoritos");
+      })
+      .catch((err) => console.error(err));
+  };
+
   return (
     <div className="indCont">
       <div className="imgCont">
@@ -59,7 +83,15 @@ let Individual = () => {
           handleCarritoIndividual(e, product.id);
         }}
       >
-        <h2>{product.title}</h2>
+        <h2>{capitalizeFirstLetterOfEachWord(product.title)}</h2>
+        <h3
+          className="favs"
+          onClick={() => {
+            handleFavorito(product.id);
+          }}
+        >
+          ♡{" "}
+        </h3>
         <h3>precio: ${product.price}</h3>
         <p>6 cuotas sin interes de ${Math.ceil(product.price / 6)}</p>
         <p>{product.description}</p>

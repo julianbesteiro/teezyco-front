@@ -28,6 +28,8 @@ function NavigationBar() {
     if (e.target.value) navigate(`search/${e.target.value}`);
   };
 
+
+
   return (
     <nav
       className="navbar navbar-expand-lg navbar-light sticky-top navbar-dark"

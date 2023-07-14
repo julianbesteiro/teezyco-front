@@ -70,6 +70,7 @@ const Grid = () => {
   };
 
   const handleFavorito = (productId) => {
+
     if(!id){ alert("debes estar logueado para usar esta funcion")}
     else{axios
       .post(`http://localhost:3001/api/favorite/add/${id}/${productId}`)
@@ -82,6 +83,13 @@ const Grid = () => {
 
   let x = 4;
   if (window.innerWidth <= 1000) x = 1;
+
+  function capitalizeFirstLetterOfEachWord(str) {
+    return str
+      .split(" ") // Split the string into an array of words
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()) // Capitalize the first letter and make the remaining letters lowercase for each word
+      .join(" "); // Join the words back into a string
+  }
 
   return (
     <>
@@ -151,7 +159,7 @@ const Grid = () => {
                           </button>
                         )}
                       </div>
-                      <h3>{product.title}</h3>
+                      <h3>{capitalizeFirstLetterOfEachWord(product.title)}</h3>
                       <h3 className="price">
                         precio: ${product.price} o 6 cuotas de $
                         {Math.floor(product.price / 6)}
