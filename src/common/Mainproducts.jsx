@@ -52,6 +52,13 @@ const Mainproducts = () => {
     };
   }, [products]);
 
+  function capitalizeFirstLetterOfEachWord(str) {
+    return str
+      .split(" ") // Split the string into an array of words
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()) // Capitalize the first letter and make the remaining letters lowercase for each word
+      .join(" "); // Join the words back into a string
+  }
+
   return (
     <>
       <h2>Productos nuevos y a la moda</h2>
@@ -68,7 +75,7 @@ const Mainproducts = () => {
                   <img src={elem.image} alt="Imagen 3" height="80%" />
 
                   <div className="titles">
-                    <h3>{elem.title}</h3>
+                    <h3>{capitalizeFirstLetterOfEachWord(elem.title)}</h3>
                     <h3 className="price">${elem.price}</h3>
                   </div>
                 </Link>

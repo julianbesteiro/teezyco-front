@@ -56,6 +56,13 @@ const Cart = () => {
       .catch((error) => console.log(error));
   };
 
+  function capitalizeFirstLetterOfEachWord(str) {
+    return str
+      .split(" ") // Split the string into an array of words
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()) // Capitalize the first letter and make the remaining letters lowercase for each word
+      .join(" "); // Join the words back into a string
+  }
+
   return (
     <div>
       <h2>Carrito de Compras</h2>
@@ -73,7 +80,7 @@ const Cart = () => {
                 }
                 alt=""
               />
-              <h3>{item.title}</h3>
+              <h3>{capitalizeFirstLetterOfEachWord(item.title)}</h3>
               <p>Price: ${item.price * item.quantity}</p>
 
               <p>Stock: {item.stock}</p>
