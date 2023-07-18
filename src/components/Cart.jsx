@@ -1,11 +1,13 @@
 import React, { useContext, useEffect, useState } from "react";
-import "../css/Cart.css";
+import "../css/Grid.css";
 import axios from "axios";
 import { UserContext } from "../context/userContext";
 
 const Cart = () => {
   const [cartItems, setCartItems] = useState([]);
   const [quantities, setQuantities] = useState({});
+  const [totalCompra, setTotalCompra] = useState(0);
+
   const { id } = useContext(UserContext);
 
   useEffect(() => {
@@ -14,9 +16,18 @@ const Cart = () => {
         .get(`http://localhost:3001/api/cart/${id}`)
         .then((response) => {
           setCartItems(response.data);
+          setTotalCompra(
+            cartItems.reduce((total, item) => {
+              return total + item.price * item.quantity;
+            }, 0)
+          );
         })
         .catch((err) => console.error(err));
   }, [id, quantities, cartItems]);
+
+  useEffect(() => {
+    if (!cartItems.length) setTotalCompra(0);
+  }, [cartItems]);
 
   const removeFromCart = (productId) => {
     axios
@@ -38,12 +49,15 @@ const Cart = () => {
       .catch((err) => console.error(err));
   };
 
-  const getTotalCompra = () => {
-    return cartItems.reduce((total, item) => {
+  useEffect(() => {
+    let totalParaUsar = cartItems.reduce((total, item) => {
       const itemQuantity = parseInt(quantities[item.id]) || 1; // Convertir a número entero o usar 1 por defecto
+      console.log("item", item);
+      console.log("item q", itemQuantity);
       return total + item.price * itemQuantity;
     }, 0);
-  };
+    setTotalCompra(totalParaUsar);
+  }, [quantities]);
 
   const handleClick = () => {
     axios
@@ -66,15 +80,13 @@ const Cart = () => {
   return (
     <div>
       <h2>Carrito de Compras</h2>
-      <div  className=" container1 ">
       {cartItems.length === 0 ? (
         <p>No hay productos en el carrito.</p>
       ) : (
-        <div className=" row1 container2">
+        <ul>
           {cartItems.map((item) => (
-            <div className=" container3" key={item.id}>
+            <div key={item.id}>
               <img
-              className="imgCart"
                 src={
                   item.image
                     ? item.image
@@ -82,13 +94,11 @@ const Cart = () => {
                 }
                 alt=""
               />
-
               <h3>{capitalizeFirstLetterOfEachWord(item.title)}</h3>
               <p>Price: ${item.price * item.quantity}</p>
 
-
-             
-              <div className="stock"> <input
+              <p>Stock: {item.stock}</p>
+              <input
                 type="number"
                 min="1"
                 max={item.stock}
@@ -96,19 +106,17 @@ const Cart = () => {
                 onChange={(e) => {
                   addToCart(item.id, e.target.value);
                 }}
-              /><p >{item.stock} disponibles</p></div>
-             
-             <div className="price"> <p>Price: ${item.price * item.quantity}</p>
-             <button onClick={() => removeFromCart(item.id)}>Eliminar</button></div>
+              />
+              <br></br>
+              <button onClick={() => removeFromCart(item.id)}>Eliminar</button>
             </div>
           ))}
-        </div>
+        </ul>
       )}
-      <div className=" container4">
-        <h2>Total: ${getTotalCompra()}</h2>
+      <div>
+        <h2>Total: ${totalCompra}</h2>
         <button onClick={handleClick}>Comprar</button>
       </div>
-    </div>
     </div>
   );
 };
